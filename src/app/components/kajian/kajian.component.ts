@@ -17,4 +17,7 @@ export class KajianComponent implements OnInit {
     });
   }
 
+  deleteKajian(event, item) {
+    this.kajianService.deleteKajian(item);
+  }
 }
