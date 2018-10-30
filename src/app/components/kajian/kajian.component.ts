@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { KajianService } from '../../services/kajian/kajian.service';
+import { Kajian } from '../../models/Kajian';
 
 @Component({
   selector: 'app-kajian',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kajian.component.css']
 })
 export class KajianComponent implements OnInit {
-
-  constructor() { }
+  kajian: Kajian[];
+  constructor(private kajianService: KajianService) { }
 
   ngOnInit() {
+    this.kajianService.getKajian().subscribe(data => {
+      this.kajian = data;
+    });
   }
 
 }
