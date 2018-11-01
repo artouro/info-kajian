@@ -9,7 +9,9 @@ import { Kajian } from '../../models/Kajian';
 })
 export class KajianComponent implements OnInit {
   kajian: Kajian[];
-  constructor(private kajianService: KajianService) { }
+  constructor(private kajianService: KajianService) {
+    
+   }
 
   ngOnInit() {
     this.kajianService.getKajian().subscribe(data => {
