@@ -16,7 +16,6 @@ import { TambahComponent } from './components/tambah/tambah.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { TemplatesComponent } from './templates/templates.component';
-import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
@@ -24,12 +23,8 @@ const appRoutes: Routes = [
       { path: 'tambah', component: TambahComponent },
     ] 
   },
-  { path: 'auth', component: AuthComponent, children:[
-      { path: '', component: LoginComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: SignupComponent },
-    ] 
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: SignupComponent },
 ];
 
 @NgModule({
@@ -43,7 +38,6 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     TemplatesComponent,
-    AuthComponent,
   ],
   imports: [
     BrowserModule,
