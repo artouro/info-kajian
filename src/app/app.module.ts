@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 
@@ -16,11 +17,12 @@ import { TambahComponent } from './components/tambah/tambah.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
-      { path: '', component: KajianComponent },
-      { path: 'tambah', component: TambahComponent },
+      { path: '', component: KajianComponent, canActivate: [AuthGuard] },
+      { path: 'tambah', component: TambahComponent, canActivate: [AuthGuard] },
     ] 
   },
   { path: 'login', component: LoginComponent },
@@ -46,6 +48,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'infokajian'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
