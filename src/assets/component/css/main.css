@@ -15,14 +15,23 @@ input, select {
 }
 #content {
     padding-top: 2.5em;
+    padding-bottom: 7em;
 }
 .content-withSkip {
     padding-top: 1em !important;
 }
-.content__header h2 {
+.content__header h2, h2.content__header {
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    transform:translateY(1.1em);
+}
+.content_addBtn {
+    text-align: right;
+}
+.addBtn {
+    font-size: 12px !important;
+    color: #fff !important;
 }
 .content__body {
     background-color: #fff;
@@ -81,7 +90,6 @@ input, select {
     font-size: .8rem;
 }
 .kajian-desc span {
-    letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 1rem;
     color: #333;
@@ -98,9 +106,6 @@ input, select {
     border-radius: 4px;
     font-size: .7rem;
     padding: 2px 7px;
-}
-.content-kajian {
-    padding-bottom: 7em;
 }
 .rules {
     padding: 2em;
