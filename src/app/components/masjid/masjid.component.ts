@@ -1,6 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { UsersService } from '../../services/users/users.service';
-import { User } from '../../models/User';
 
 @Component({
   selector: 'app-masjid',
@@ -8,13 +6,10 @@ import { User } from '../../models/User';
   styleUrls: ['./masjid.component.css']
 })
 export class MasjidComponent implements OnInit {
-  users: User[];
-    constructor(private usersService: UsersService) {
+    constructor() {
   }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(data => {
-      this.users = data;
-    });
+    
   }
 }
