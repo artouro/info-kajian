@@ -1,23 +1,25 @@
-<div class="carousel-wrapper" style="width:100%;">
-  <div class="carousel" data-flickity *ngFor="let data of kajian">
-    <div class="carousel-cell">
-      <div class="card-img">
-          <img src="../../assets/component/images/kajian2.jpg" />
+<section id="content" class="content-kajian">
+  <div class="container">
+      <div class="col-xs-12 offset-sm-4 content__header">
+          <h2>List Kajian</h2>
       </div>
-      <div class="card-title">
-          <h3>{{ data.judul }}</h3>
-          <p class="card-pemateri">by {{ data.pemateri }}</p>
-        </div>
-          <hr>
-        <div class="card-desc">
-          <p>
-            <span>{{ data.lokasi }}</span>
-            <br>
-            {{ data.tanggal }}
-            <br>
-            {{ data.kategori }}
-          </p>
+      <div class="col-xs-12 col-sm-4 offset-sm-4 content__body kajian" *ngFor="let data of kajian">
+          <div class="kajian-img">
+            <img src="../../assets/component/images/kajian2.jpg">
+          </div>
+          <div class="kajian-title">
+            <h2>{{ data.judul }}</h2>
+            <p>by {{ data.pemateri }}</p>
+          </div>
+            <hr>
+          <div  class="kajian-desc">
+            <p>
+              <span>{{ data.lokasi }}</span> <br>
+              {{ data.tanggal }}
+            </p>
+            <div class="kajian-kategori"><a href="#">{{ data.kategori }}</a></div>
+            
+          </div>
       </div>
-    </div>
   </div>
-</div>
+</section>
