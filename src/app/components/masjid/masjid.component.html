@@ -1,0 +1,19 @@
+<section id="content" class="content-kajian">
+  <div class="container">
+      <div class="row">
+        <div class="col offset-md-4 content__header">
+            <h2>List Masjid</h2>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 offset-sm-4 content__body masjid" *ngFor="let data of users">
+          <div class="masjid-title">
+            <h2>{{ data.nama }}</h2>
+            <p><br>Jalan Ganesha no. 36, Bandung</p>
+          </div>
+            <hr>
+          <div  class="text-right">
+            <a href="#" class="btn btn-info btn-sm">View Details</a>
+          </div>
+      </div>
+  </div>
+</section>

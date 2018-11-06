@@ -64,7 +64,10 @@ input, select {
     margin-top: 3em;
     font-size: .8rem;
 }
-.content__body.kajian h2 {
+.content__body.masjid {
+    padding: 1em 2em !important;
+}
+.content__body.kajian h2, .content__body.masjid h2 {
     font-size: 2em;
     border-left: 4px solid cyan;
     padding-left: 10px;
@@ -77,10 +80,10 @@ input, select {
 .kajian-img img {
     width: 100%;
 }
-.kajian-title {
+.kajian-title, .masjid-title {
     padding-top: 2em;
 }
-.kajian-title p {
+.kajian-title p, .masjid-title p {
     padding-left: 1em;
     font-style: italic;
     font-size: 1em;

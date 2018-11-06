@@ -18,11 +18,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { AuthGuard } from './auth.guard';
+import { MasjidComponent } from './components/masjid/masjid.component';
+import { MajelisComponent } from './components/majelis/majelis.component';
+import { PemateriComponent } from './components/pemateri/pemateri.component';
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
       { path: '', component: KajianComponent, canActivate: [AuthGuard] },
       { path: 'tambah', component: TambahComponent, canActivate: [AuthGuard] },
+      { path: 'masjid', component: MasjidComponent, canActivate: [AuthGuard] },
+      { path: 'majelis', component: MajelisComponent, canActivate: [AuthGuard] },
+      { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] }
     ] 
   },
   { path: 'login', component: LoginComponent },
@@ -40,6 +46,9 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     TemplatesComponent,
+    MasjidComponent,
+    MajelisComponent,
+    PemateriComponent,
   ],
   imports: [
     BrowserModule,

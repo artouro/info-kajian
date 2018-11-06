@@ -5,4 +5,9 @@ export class User {
 	photoUrl?: string;
 	nama?: string;
 	level?;
+	alamat?: string;
+	location: {
+		lat?: string;
+		long?: string;
+	};
 }
