@@ -10,7 +10,6 @@ import { Kajian } from '../../models/Kajian';
 export class TambahComponent implements OnInit {
   kajian: Kajian = {
     judul: '',
-    deskripsi: '',
     pemateri: '',
     lokasi: '',
     tanggal: '',
@@ -26,7 +25,6 @@ export class TambahComponent implements OnInit {
     this.kajian.tanggal !== '' && this.kajian.kategori !== '') {
         this.kajianService.addKajian(this.kajian);
         this.kajian.judul = '';
-        this.kajian.deskripsi = '';
         this.kajian.pemateri = '';
         this.kajian.lokasi = '';
         this.kajian.tanggal = '';

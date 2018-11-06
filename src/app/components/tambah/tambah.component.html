@@ -1,39 +1,32 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-10" id="firstSection">
-    <form class="border p-2 mb-2 " id="form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label>Judul Kajian</label>
-        <input type="text" class="form-control" [(ngModel)]="kajian.judul" name="judul" placeholder="Contoh: Nikmatnya Sedekah ..">           
+<section id="content">
+  <div class="container">
+      <div class="col-xs-12 offset-sm-4 content__header">
+          <h2>Post Kajian</h2>
       </div>
-      <div class="form-group">
-          <label>Deskripsi</label>
-          <textarea class="form-control" [(ngModel)]="kajian.deskripsi" name="deskripsi"></textarea>           
-        </div>
-      <div class="form-group">
-        <label>Pemateri</label>
-        <input type="text" class="form-control" [(ngModel)]="kajian.pemateri" name="pemateri" placeholder="Contoh: Ustadz Abu Haidar ..">           
+      <div class="col-xs-12 col-sm-4 offset-sm-4 content__body">
+          <form (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="judul">Judul Kajian</label>
+                <input type="text" class="form-control" id="judul" [(ngModel)]="kajian.judul" name="judul" placeholder="Masukkan judul kajian">
+              </div>
+              <div class="form-group">
+                <label for="pemateri">Pemateri</label>
+                <input type="text" class="form-control" id="pemateri" [(ngModel)]="kajian.pemateri" name="pemateri" placeholder="Masukkan nama pemateri">
+              </div>
+              <div class="form-group">
+                <label for="lokasi">Lokasi</label>
+                <input type="text" class="form-control" id="lokasi" [(ngModel)]="kajian.lokasi" name="lokasi" placeholder="Masukkan lokasi kajian">
+              </div>
+              <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="text" class="form-control" id="tanggal" [(ngModel)]="kajian.tanggal" name="tanggal" placeholder="Contoh: 10 November 2018">
+              </div>
+              <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <input type="text" class="form-control" id="kategori" [(ngModel)]="kajian.kategori" name="kategori" placeholder="Contoh: Tabligh Akbar, Tauhid, Tahsin, Fiqih, ...">
+              </div>
+            <button type="submit" class="btn btn-info btn-block">Submit</button>
+          </form>
       </div>
-      <div class="form-group">
-        <label>Lokasi</label>
-        <input type="text" class="form-control" [(ngModel)]="kajian.lokasi" name="lokasi" placeholder="Contoh: Masjid Agung Al-Ukhuwah, Bandung ..">           
-      </div>  
-
-      <div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="tanggal">Tanggal</label>
-        <input class="form-control" [(ngModel)]="kajian.tanggal" name="tanggal" placeholder="YYYY/MM/DD" type="text"/>
-      </div>          
-      <div class="form-group">
-        <label>Kategori</label>
-        <input type="text" class="form-control" [(ngModel)]="kajian.kategori" name="kategori" placeholder="Contoh: Tabligh Akbar, Tematik, Tahsin, ..">           
-      </div>  
-      <div class="form-group text-center">
-        <button type="submit" id="button1" class="btn btn-primary">Tambah Kajian</button>
-      </div>
-      <button style="display: none" id="button2" class="btn btn-success">Update Kajian</button>
-      <button style="display: none" id="button3" class="btn btn-danger">Cancel</button>
-    </form>
-    </div>
-    
   </div>
-</div>
+</section>
