@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-type UserFields = 'email' | 'password';
+type UserFields = 'email' | 'password' | 'level' | 'nama' | 'username';
 type FormErrors = { [u in UserFields]: string };
 
 @Component({
@@ -19,11 +19,23 @@ export class SignupComponent implements OnInit {
   formErrors: FormErrors = {
     'email': '',
     'password': '',
+    'level': '',
+    'nama': '',
+    'username': ''
   };
   validationMessages = {
     'email': {
       'required': 'Email is required.',
       'email': 'Email must be a valid email',
+    },
+    'level': {
+      'required': 'Email is required.',
+    },
+    'nama': {
+      'required': 'Email is required.',
+    },
+    'username': {
+      'required': 'Email is required.',
     },
     'password': {
       'required': 'Password is required.',
@@ -40,7 +52,7 @@ export class SignupComponent implements OnInit {
   }
 
   register() {
-    this.auth.register(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.register(this.userForm);
   }
 
   buildForm() {
@@ -48,6 +60,15 @@ export class SignupComponent implements OnInit {
       'email': ['', [
         Validators.required,
         Validators.email,
+      ]],
+      'username': ['', [
+        Validators.required,
+      ]],
+      'nama': ['', [
+        Validators.required,
+      ]],
+      'level': ['', [
+        Validators.required,
       ]],
       'password': ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
@@ -65,7 +86,7 @@ export class SignupComponent implements OnInit {
     if (!this.userForm) { return; }
     const form = this.userForm;
     for (const field in this.formErrors) {
-      if (Object.prototype.hasOwnProperty.call(this.formErrors, field) && (field === 'email' || field === 'password')) {
+      if (Object.prototype.hasOwnProperty.call(this.formErrors, field) && (field === 'email' || field === 'password' || field === 'level')) {
         // clear previous error message (if any)
         this.formErrors[field] = '';
         const control = form.get(field);

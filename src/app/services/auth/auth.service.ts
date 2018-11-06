@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { switchMap, startWith, tap, filter} from 'rxjs/operators';
 import { NotifyService } from '../notify/notify.service';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -35,18 +36,30 @@ export class AuthService {
   	.then(credentials => {
   		this.notify.update('Welcome back!', 'success')
   		this.router.navigate(['/'])
-  		return this.updateUserData(credentials.user)
+  		// return this.updateUserData(credentials.user)
   	})
   	.catch(err => this.handleError(err))
   }
 
-  register(email: string, password: string){
+  register(form: FormGroup){
   	return this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(form.value['email'], form.value['password'])
       .then(credential => {
         this.notify.update('Welcome new user!', 'success');
         this.router.navigate(['/'])
-        return this.updateUserData(credential.user); // if using firestore
+        // return this.updateUserData(credential.user); // if using firestore
+        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${credential.user.uid}`);
+
+	  	const data: User = {
+	  		uid: credential.user.uid,
+	  		email: credential.user.email || null,
+	  		nama: form.value['nama'],
+	  		// photoUrl: user.photoUrl || 'https://goo.gl/Fz9nrQ',
+	  		username: form.value['username'],
+	  		level: form.value['level']
+	  	};
+
+	  	return userRef.set(data)
       })
       .catch(error => this.handleError(error));
   }
@@ -65,7 +78,7 @@ export class AuthService {
   	const data: User = {
   		uid: user.uid,
   		email: user.email || null,
-  		displayName: user.displayName || 'Nameless User',
+  		// displayName: user.displayName || 'Nameless User',
   		photoUrl: user.photoUrl || 'https://goo.gl/Fz9nrQ',
   		username: user.username || null
   	};

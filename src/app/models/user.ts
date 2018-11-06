@@ -3,5 +3,6 @@ export class User {
 	username?: string;
 	email?: string;
 	photoUrl?: string;
-	displayName?: string;
+	nama?: string;
+	level?;
 }

@@ -14,9 +14,6 @@ export class KajianService {
   kajianDoc: AngularFirestoreDocument<Kajian>;
 
   constructor(public http: Http, public afs: AngularFirestore) {
-    
-  }
-  getKajian() {
     this.kajianCollection = this.afs.collection('kajian', ref => ref.orderBy('tanggal', 'desc'));
     this.kajian = this.kajianCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
@@ -25,6 +22,8 @@ export class KajianService {
         return data;
       });
     }));
+  }
+  getKajian() {
     return this.kajian;
   }
   addKajian(kajian: Kajian) {
