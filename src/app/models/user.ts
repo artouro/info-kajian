@@ -6,7 +6,7 @@ export class User {
 	nama?: string;
 	level?;
 	alamat?: string;
-	location: {
+	location?: {
 		lat?: string;
 		long?: string;
 	};
