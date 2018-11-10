@@ -5,15 +5,23 @@
             <h2>List Majelis</h2>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-4 offset-sm-4 content__body masjid">
-          <div class="masjid-title">
-            <h2>Majelis Jejak Shahabat</h2>
-            <p>@jejakshahabat<br></p>
-          </div>
-            <hr>
-          <div  class="text-right">
-            <a href="#" class="btn btn-info btn-sm">View Details</a>
-          </div>
-      </div>
+      <div *ngIf="user?.length > 0; else noData">
+	      <div class="col-xs-12 col-sm-4 offset-sm-4 content__body masjid" *ngFor="let data of user">
+	          <div class="masjid-title">
+	            <h2>{{ data.nama }}</h2>
+	            <p>@{{ data.username }}<br></p>
+	          </div>
+	            <hr>
+	          <div  class="text-right">
+	            <a href="#" class="btn btn-info btn-sm">View Details</a>
+	          </div>
+	      </div>
+       </div>
   </div>
 </section>
+
+<ng-template #noData>
+	<div class="col-xs-12 col-sm-4 offset-sm-4 content__body masjid">
+		<p>Data Majelis tidak ditemukan.</p>
+	</div>
+</ng-template>

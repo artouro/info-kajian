@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MasjidService } from '../../services/masjid/masjid.service';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-pemateri',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pemateri.component.css']
 })
 export class PemateriComponent implements OnInit {
-
-  constructor() { }
+  user: User[];
+  constructor(private masjidService: MasjidService) { }
 
   ngOnInit() {
+  	this.masjidService.getPemateri().subscribe(data => {
+    	this.user = data;
+    });
   }
 
 }
