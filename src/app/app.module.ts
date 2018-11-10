@@ -21,6 +21,7 @@ import { AuthGuard } from './auth.guard';
 import { MasjidComponent } from './components/masjid/masjid.component';
 import { MajelisComponent } from './components/majelis/majelis.component';
 import { PemateriComponent } from './components/pemateri/pemateri.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     MasjidComponent,
     MajelisComponent,
     PemateriComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

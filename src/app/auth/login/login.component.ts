@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 // import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 type UserFields = 'email' | 'password';
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder, public auth: AuthService, private router: Router ){ }
+  constructor(private fb: FormBuilder, public auth: AuthService, private router: Router){ }
 
   ngOnInit() {
     this.buildForm();
