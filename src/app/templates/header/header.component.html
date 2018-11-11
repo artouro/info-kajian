@@ -1,4 +1,4 @@
-      <nav class="navbar navbar-expand-lg navbar-light bg-light custom-nav">
+      <nav class="navbar navbar-expand-md navbar-light bg-light custom-nav">
         <a class="navbar-brand" href="#"><img src="assets/templates/img/icons/books.ico" height="40"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -6,28 +6,28 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Kajian <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="/">Kajian <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/masjid">Masjid</a>
+              <a class="nav-link" routerLink="/masjid">Masjid</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/majelis">Majelis</a>
+              <a class="nav-link" routerLink="/majelis">Majelis</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pemateri">Pemateri</a>
+              <a class="nav-link" routerLink="/pemateri">Pemateri</a>
             </li>
           </ul>
           <hr>
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav right-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link btn btn-primary addBtn" href="/tambah">Post Kajian</a>
+              <a class="nav-link btn btn-primary addBtn" routerLink="/tambah">Post Kajian</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index2.html">Profile</a>
+              <a class="nav-link" routerLink="index2.html">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="" (click)="logout()">Sign Out</a>
+              <a class="nav-link btn-out" routerLink="" (click)="logout()">Sign Out</a>
             </li>
           </ul>
         </div>

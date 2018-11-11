@@ -1,0 +1,19 @@
+@media screen and (max-width: 767px){
+	.active {
+        border-left: 2px solid orange;
+        background-color: rgba(255, 165, 0, .1);
+        padding-left: 1em;
+    }
+}
+@media screen and (min-width: 768px){
+	.addBtn {
+		margin: 0 1em !important;
+	}
+	.right-nav li {
+		border-left: 1px solid #d0d0d0;
+	}
+	.right-nav li:first-child {
+		border-left: 1px solid transparent;
+	}
+	
+}
