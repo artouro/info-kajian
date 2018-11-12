@@ -5,7 +5,8 @@
             <h2>List Kajian</h2>
         </div>
       </div>
-      <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
+      <div *ngIf="kajian?.length > 0; else noData">
+        <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
           <div class="kajian-img">
             <img src="../../assets/component/images/kajian2.jpg">
           </div>
@@ -20,8 +21,14 @@
               {{ data.tanggal }}
             </p>
             <div class="kajian-kategori"><a href="#">{{ data.kategori }}</a></div>
-            
           </div>
+        </div>
       </div>
   </div>
 </section>
+
+<ng-template #noData>
+  <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body masjid">
+    <p>Data Kajian tidak ditemukan.</p>
+  </div>
+</ng-template>

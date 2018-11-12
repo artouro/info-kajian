@@ -12,22 +12,30 @@ export class KajianService {
   kajianCollection: AngularFirestoreCollection<Kajian>;
   kajian: Observable<Kajian[]>;
   kajianDoc: AngularFirestoreDocument<Kajian>;
+  docId: string;
 
   constructor(public http: Http, public afs: AngularFirestore) {
-    this.kajianCollection = this.afs.collection('kajian', ref => ref.orderBy('tanggal', 'desc'));
-    this.kajian = this.kajianCollection.snapshotChanges().pipe(map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Kajian;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    }));
+    this.kajianCollection = this.afs.collection('kajian');
   }
+  // firestore snapshot 'map' function
+  mapping(snapshotChanges){
+    this.kajian = snapshotChanges.map(changes => {
+      return changes.map(result => {
+        const data = result.payload.doc.data() as Kajian;
+        data.id = result.payload.doc.id;
+        return data;
+      })
+    });
+  }
+  // call this in component's controller 
+  // to get list of kajian
   getKajian() {
+    this.kajianCollection = this.afs.collection('kajian', ref => ref.orderBy('tanggal', 'desc'));
+    this.mapping(this.kajianCollection.snapshotChanges());
     return this.kajian;
   }
   addKajian(kajian: Kajian) {
-    this.kajianCollection.add(kajian);
+    return Promise.resolve(this.kajianCollection.add(kajian));
   }
   deleteKajian(kajian: Kajian) {
     this.kajianDoc = this.afs.doc(`kajian/${kajian.id}`);

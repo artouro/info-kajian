@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { KajianService } from '../../services/kajian/kajian.service';
 import { Kajian } from '../../models/Kajian';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-tambah',
@@ -14,21 +16,45 @@ export class TambahComponent implements OnInit {
     lokasi: '',
     tanggal: '',
     kategori: ''
-  }
-  constructor(private kajianService: KajianService) { }
+  };
+  selectedFile: File = null;
+  constructor(private kajianService: KajianService, private afs: AngularFirestore ,private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
   }
 
+  selectFile(event){
+    this.selectedFile = event.target.files[0];
+  }
+
   onSubmit() {
     if (this.kajian.judul !== '' && this.kajian.pemateri !== '' && this.kajian.lokasi !== '' &&
-    this.kajian.tanggal !== '' && this.kajian.kategori !== '') {
-        this.kajianService.addKajian(this.kajian);
-        this.kajian.judul = '';
-        this.kajian.pemateri = '';
-        this.kajian.lokasi = '';
-        this.kajian.tanggal = '';
-        this.kajian.kategori = '';
+        this.kajian.tanggal !== '' && this.kajian.kategori !== '') {
+        this.kajianService.addKajian(this.kajian).then(docRef => {
+          
+          // Mengambil id doc kajian yang baru saja diupload ..
+          let id = docRef.id;
+
+          // Mengambil ekstensi file yang dipilih ..
+          let ext = this.selectedFile.name.split('.').pop();
+
+          // Set filename ..
+          let filename = `${id}.${ext}`;
+
+          // Uploading ..
+          this.afStorage.upload(`/poster/${filename}`, this.selectedFile); 
+          
+          // Menambahkan field 'poster' ke document yg baru saja di-add ..
+          this.afs.collection('kajian').doc(id)
+           .set({ poster: filename }, { merge: true });
+          
+          // Reset model
+          this.kajian.judul = '';
+          this.kajian.pemateri = '';
+          this.kajian.lokasi = '';
+          this.kajian.tanggal = '';
+          this.kajian.kategori = '';
+        });
     }
   }
 

@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'kbtw-project-e536c.firebaseapp.com',
     databaseURL: 'https://kbtw-project-e536c.firebaseio.com',
     projectId: 'kbtw-project-e536c',
-    storageBucket: 'kbtw-project-e536c.appspot.com',
+    storageBucket: 'gs://kbtw-project-e536c.appspot.com',
     messagingSenderId: '710990313717'
   }
 };

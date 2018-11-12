@@ -16,7 +16,6 @@ export class MasjidService {
   constructor(public http: Http, public afs: AngularFirestore) { 
  
   }
-
   mapping(snapshotChanges){
     this.user = snapshotChanges.map(changes => {
       return changes.map(result => {
