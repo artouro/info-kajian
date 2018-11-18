@@ -8,11 +8,12 @@
       <div *ngIf="kajian?.length > 0; else noData">
         <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
           <div class="kajian-img">
-            <img src="../../assets/component/images/kajian2.jpg">
+            <img src="{{ data.poster }}">
           </div>
           <div class="kajian-title">
             <h2>{{ data.judul }}</h2>
-            <p>by {{ data.pemateri }}</p>
+            <p>by {{ data.pemateri }}
+            </p>
           </div>
             <hr>
           <div  class="kajian-desc">

@@ -9,11 +9,5 @@
 	.addBtn {
 		margin: 0 1em !important;
 	}
-	.right-nav li {
-		border-left: 1px solid #d0d0d0;
-	}
-	.right-nav li:first-child {
-		border-left: 1px solid transparent;
-	}
 	
 }

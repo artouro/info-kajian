@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Kajian } from '../../models/Kajian';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,7 @@ export class KajianService {
   // call this in component's controller 
   // to get list of kajian
   getKajian() {
-    this.kajianCollection = this.afs.collection('kajian', ref => ref.orderBy('tanggal', 'desc'));
+    this.kajianCollection = this.afs.collection('kajian', ref => ref.orderBy('tanggal', 'asc'));
     this.mapping(this.kajianCollection.snapshotChanges());
     return this.kajian;
   }
