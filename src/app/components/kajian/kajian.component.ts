@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { KajianService } from '../../services/kajian/kajian.service';
+import { MasjidService } from '../../services/masjid/masjid.service';
 import { Kajian } from '../../models/Kajian';
+import { User } from '../../models/User';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
@@ -10,8 +12,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class KajianComponent implements OnInit {
   kajian: Kajian[];
-  constructor(private kajianService: KajianService, public afStorage: AngularFireStorage) {
-  
+  majelis: User[];
+  masjid: User[];
+  pemateri: User[];
+  constructor(private kajianService: KajianService, private masjidService: MasjidService, public afStorage: AngularFireStorage) {
   }
 
   ngOnInit() {
@@ -24,6 +28,25 @@ export class KajianComponent implements OnInit {
         });
         res.poster = url;
       });
+    });
+    this.getDataMasjid();
+    this.getDataMajelis();
+    this.getDataPemateri();
+  }
+
+  getDataMasjid(){
+    this.masjidService.getMasjid().subscribe(data => {
+      this.masjid = data;
+    });
+  }
+  getDataMajelis(){
+    this.masjidService.getMajelis().subscribe(data => {
+      this.majelis = data;
+    });
+  }
+  getDataPemateri(){
+    this.masjidService.getPemateri().subscribe(data => {
+      this.pemateri = data;
     });
   }
 

@@ -46,7 +46,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(form.value['email'], form.value['password'])
       .then(credential => {
         this.notify.update('Welcome new user!', 'success');
-        this.router.navigate(['/'])
+        this.router.navigate(['/profile'])
         // return this.updateUserData(credential.user); // if using firestore
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${credential.user.uid}`);
 
@@ -65,7 +65,7 @@ export class AuthService {
   }
 
   logout(){
-  	this.afAuth.auth.signOut().then(() => this.router.navigate(['/login']))
+  	this.afAuth.auth.signOut()
   }
 
   private handleError(error: Error){

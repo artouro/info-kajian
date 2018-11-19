@@ -18,11 +18,13 @@ import { TambahComponent } from './components/tambah/tambah.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { TemplatesComponent } from './templates/templates.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { LoggedInGuard } from './guards/logged-in.guard';
 import { MasjidComponent } from './components/masjid/masjid.component';
 import { MajelisComponent } from './components/majelis/majelis.component';
 import { PemateriComponent } from './components/pemateri/pemateri.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
       { path: 'tambah', component: TambahComponent, canActivate: [AuthGuard] },
       { path: 'masjid', component: MasjidComponent, canActivate: [AuthGuard] },
       { path: 'majelis', component: MajelisComponent, canActivate: [AuthGuard] },
-      { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] }
+      { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
     ] 
   },
   { path: 'login', component: LoginComponent },
@@ -52,6 +55,7 @@ const appRoutes: Routes = [
     MajelisComponent,
     PemateriComponent,
     NotificationComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

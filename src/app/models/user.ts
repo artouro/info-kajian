@@ -1,8 +1,8 @@
-export class User {
+export interface User {
 	uid: string;
 	username?: string;
 	email?: string;
-	photoUrl?: string;
+	photoUrl?: any;
 	nama?: string;
 	level?;
 	alamat?: string;
@@ -10,4 +10,7 @@ export class User {
 		lat?: string;
 		long?: string;
 	};
+	telp?: string;
+	kota?: string;
+	profileSet?: boolean;
 }

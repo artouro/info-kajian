@@ -14,8 +14,7 @@ export class MasjidService {
   user: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
   constructor(public http: Http, public afs: AngularFirestore) { 
- 
-  }
+}
   mapping(snapshotChanges){
     this.user = snapshotChanges.map(changes => {
       return changes.map(result => {
@@ -34,7 +33,6 @@ export class MasjidService {
     this.mapping(this.userCollection.snapshotChanges());
   	return this.user;
   }
-  
   getPemateri(){
     this.userCollection = this.afs.collection('users', ref => ref.where('level', '==', '3'));
     this.mapping(this.userCollection.snapshotChanges());
