@@ -1,0 +1,15 @@
+#content-tab {
+    padding-bottom: 5em;
+}
+#content-tab .tab-content {
+    background-color: #fff;
+    padding: 2em;
+}
+.kajian-img-loader {
+    text-align: center;
+    background-color: rgba(0,0,0,.01);
+}
+.masjid-title h4 {
+    border-left: 4px solid cyan;
+    padding-left: 10px;
+}
