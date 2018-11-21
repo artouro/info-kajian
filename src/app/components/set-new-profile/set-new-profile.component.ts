@@ -4,13 +4,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth/auth.service';
 import { UsersService } from '../../services/users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+    templateUrl: './set-new-profile.component.html',
+    styleUrls: ['./set-new-profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class SetNewProfileComponent implements OnInit {
     user: User = {
         uid: '',
         photoUrl: '',
@@ -27,7 +28,8 @@ export class ProfileComponent implements OnInit {
         private afs: AngularFirestore,
         private afStorage: AngularFireStorage,
         public auth: AuthService,
-        private users: UsersService
+        private users: UsersService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -83,6 +85,7 @@ export class ProfileComponent implements OnInit {
             user.kota = this.user.kota;
             user.telp = this.user.telp;
             this.users.updateUserProfile(user);
+            this.router.navigate(['/profile']);
         });
     }
 }

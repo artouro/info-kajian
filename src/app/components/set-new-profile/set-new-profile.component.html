@@ -1,0 +1,59 @@
+<section id="content">
+  <div class="container">
+      <div *ngIf="user.profileSet || toggleForm;then profile else photo"></div>
+      <ng-template #photo>
+          <div class="col-xs-12 offset-sm-4 content__header">
+              <h2>Setting Up Photo Profile</h2>
+          </div>
+          <div class="col-xs-12 col-sm-4 offset-sm-4 content__body content-withSkip">
+              <div class="col-xs-12 text-right skip"><a (click)="toggleForm=true">Skip ></a></div>
+              <div class="col-xs-12 text-center profile-img-default">
+                  <img src="assets/component/images/user.png" width="100">
+              </div>
+              <div class="col-xs-12 rules">
+                  <label>Maximum Size : <span>1024 kB</span></label> <br>
+                  <label>Allowed Type : <span>.jpg, .png</span></label> <br>
+                  <label>Maximum Image Resolution : <span>600 x 600px</span></label>
+              </div>
+              <form (ngSubmit)="setPhotoProfile()">
+                  <div class="form-group text-center">
+                      <label for="photo" class="btn btn-primary">Unggah Foto Profil Baru</label>
+                      <input type="file" (change)="selectFile($event)" class="form-control-file" id="photo" style="display:none;">
+                  </div>
+                  <button type="submit" class="btn btn-info btn-block" [disabled]="activeBtn">Selanjutnya</button>
+              </form>
+          </div>
+      </ng-template>
+      <ng-template #profile>
+          <div class="col-xs-12 offset-sm-4 content__header">
+              <h2>Setting Up Profile</h2>
+          </div>
+          <div class="col-xs-12 col-sm-4 offset-sm-4 content__body">
+              <div class="col-xs-12 text-center profile-img-default">
+                  <img [src]="user.photoUrl || 'assets/component/images/user.png'" width="100">
+              </div>
+              <form (ngSubmit)="submit()">
+                  <div class="form-group">
+                      <label for="fullname">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="fullname" [(ngModel)]="user.nama" name="nama"
+                          placeholder="Masukkan nama lengkap" [value]="user.nama">
+                  </div>
+                  <div class="form-group">
+                      <label for="phone">No. Telepon</label>
+                      <input type="text" class="form-control" id="phone" [(ngModel)]="user.telp" name="telp"
+                          placeholder="Masukkan nomor telepon">
+                  </div>
+                  <div class="form-group">
+                      <label for="city">Kota</label>
+                      <select class="form-control" [(ngModel)]="user.kota" name="city">
+                          <option value="">- Pilih Kota -</option>
+                          <option value="Bandung">Bandung</option>
+                          <option value="Jakarta">Jakarta</option>
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-info btn-block">Selanjutnya</button>
+              </form>
+          </div>
+      </ng-template>
+  </div>
+</section>

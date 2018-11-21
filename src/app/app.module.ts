@@ -25,6 +25,8 @@ import { MajelisComponent } from './components/majelis/majelis.component';
 import { PemateriComponent } from './components/pemateri/pemateri.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SetNewProfileComponent } from './components/set-new-profile/set-new-profile.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: TemplatesComponent, children:[
@@ -33,8 +35,9 @@ const appRoutes: Routes = [
       { path: 'masjid', component: MasjidComponent, canActivate: [AuthGuard] },
       { path: 'majelis', component: MajelisComponent, canActivate: [AuthGuard] },
       { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
-    ] 
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'profile/new', component: SetNewProfileComponent, canActivate: [AuthGuard] },
+    ]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
@@ -56,6 +59,7 @@ const appRoutes: Routes = [
     PemateriComponent,
     NotificationComponent,
     ProfileComponent,
+    SetNewProfileComponent,
   ],
   imports: [
     BrowserModule,

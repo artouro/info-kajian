@@ -1,0 +1,22 @@
+.content__body {
+    margin: 5px;
+}
+.profile__photo img {
+    border-radius: 50%;
+}
+.profile__data ul li i {
+    margin-right: 2em;
+}
+.profile__editBtn button {
+    font-size: .6rem;
+    color: #fff;
+    padding: .4em .8em !important;
+}
+.min-padding {
+    padding-top: 1em !important;
+}
+.small-grey {
+    margin-top: 2em;
+    font-size: .9em;
+    color: #c0c0c0;
+}
