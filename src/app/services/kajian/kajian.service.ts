@@ -35,6 +35,11 @@ export class KajianService {
     this.mapping(this.kajianCollection.snapshotChanges());
     return this.kajian;
   }
+  getKajianSaya(username) {
+    this.kajianCollection = this.afs.collection('kajian', ref => ref.where('username', '==', username));
+    this.mapping(this.kajianCollection.snapshotChanges());
+    return this.kajian;
+  }
   addKajian(kajian: Kajian) {
     return Promise.resolve(this.kajianCollection.add(kajian));
   }

@@ -1,3 +1,12 @@
+.navbar-light .navbar-toggler {
+    border: none !important;
+    transition: .2s;
+    border-radius: 50%;
+}
+.navbar-light .navbar-toggler:active {
+    background-color: rgba(0,0,0,.3);
+}
+
 body {
     background-color: #E1E1E1 !important;
     font-family: 'Open Sans', sans-serif;
@@ -37,7 +46,7 @@ input, select {
     background-color: #fff;
     padding: 3em 2em;
     margin-top: 2em;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 0px 10px 20px rgba(0,0,0,.1);
 }
 .content__body .skip {

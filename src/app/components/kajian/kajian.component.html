@@ -6,7 +6,13 @@
         </div>
       </div>
       <div *ngIf="kajian?.length > 0; else noData">
-        <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
+          <div class="col-12 author">
+                <a href="#">
+                  <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="">
+                  <span>Author's Name</span>
+                </a>
+          </div>
           <div class="kajian-img" *ngIf="data.poster?.length > 0; else noImg">
             <img src="{{ data.poster }}">
           </div>
@@ -88,7 +94,7 @@
 </section>
 
 <ng-template #noData>
-  <div class="col-xs-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+  <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body">
     <p>Data tidak ditemukan.</p>
   </div>
 </ng-template>

@@ -1,11 +1,22 @@
 .content__body {
     margin: 5px;
 }
-.profile__photo img {
+.profile__photo {
     border-radius: 50%;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.profile__photo img {
+    width: auto;
+    height: 100%;
 }
 .profile__data ul li i {
     margin-right: 2em;
+    color: orange;
+
 }
 .profile__editBtn button {
     font-size: .6rem;
@@ -19,4 +30,49 @@
     margin-top: 2em;
     font-size: .9em;
     color: #c0c0c0;
+}
+.kajian-saya {
+    margin-top: 1.5em;
+    transition: .2s;
+    border-radius: 8px;
+}
+.kajian-saya .col {
+    padding: 0;
+}
+.kajian-saya ul li {
+    display: inline-block;
+    margin: 1em;
+    overflow: hidden;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    transition: .3s;
+    box-shadow: 0px 8px 10px rgba(0,0,0,.3);
+    transform:translateY(0px);
+}
+.kajian-saya ul li:hover {
+    transform:translateY(6px);
+    box-shadow: 0px 2px 5px rgba(0,0,0,.3);
+}
+.kajian-saya ul li img {
+    height: 100px;
+    border-radius: 8px;
+}
+@media screen and (max-width: 575px){
+    .kajian-saya .img { padding-left: 0; }
+    .kajian-saya .desc { padding-left: 0; padding-right: 0; }
+    .kajian-saya .desc h4 {
+        font-size: .85rem;
+    }
+    .kajian-saya .desc p {
+        font-size: .65rem;
+        font-style: italic;
+    }
+    .kajian-saya .desc .lokasi {
+        font-style: normal;
+        color: #333;
+    }
+    .kajian-saya .desc .tanggal {
+        color: #222;
+    }
 }

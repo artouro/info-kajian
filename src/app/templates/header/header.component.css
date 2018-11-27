@@ -9,5 +9,9 @@
 	.addBtn {
 		margin: 0 1em !important;
 	}
-	
+}
+@media screen and (max-width: 768px){
+	.addBtn {
+		margin: 0 0 1em !important;
+	}
 }

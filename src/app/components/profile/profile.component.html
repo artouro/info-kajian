@@ -1,15 +1,15 @@
 <section id="content">
     <div class="container">
-        <!-- <div class="col-xs-3 content__header">
+        <!-- <div class="col-3 content__header">
             <h2>Profile</h2>
         </div> -->
         <div class="row">
-            <div class="col-xs-12 col-md-4 content__body min-padding">
+            <div class="col-12 col-md-4 content__body min-padding">
                 <div class="profile__editBtn text-right">
                     <button class="btn btn-warning">Ubah Profil</button>
                 </div>
                 <div class="profile__photo text-center">
-                    <img [src]="user.photoUrl || assets/component/images/user.png" width="100">
+                    <img [src]="user.photoUrl || assets/component/images/user.png">
                 </div>
                 <div class="profile__data text-center">
                     <h3>{{ user.nama }}</h3>
@@ -22,15 +22,84 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-7 content__body">
+            <div class="col-12 col-md-7 content__body">
                 <h5>Kajian Saya</h5>
-                <div *ngIf="kajian?.length > 0; else noData"></div>
+                <!-- <div *ngIf="kajian?.length > 0; else noData">
+                    <div *ngFor="let data of kajian">
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                </div> -->
+                <div class="kajian-saya">
+                    <div class="col">
+                        <ul>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/kajian1.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/soc.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/kajian1.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/soc.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/kajian1.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/profile/i/id_kajian">
+                                    <img src="../../assets/component/images/soc.jpg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                            
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <ng-template #noData>
-    <p class="text-center small-grey">Data kajian anda tidak ditemukan.</p>
+    <!-- <p class="text-center small-grey">Data kajian anda tidak ditemukan.</p> -->
+    <div class="kajian-saya">
+        <div class="row">
+            <div class="col-3 kajian-saya-img">
+                <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=300">
+            </div>
+            <div class="col-9 kajian-saya-info">
+                <h4>Kitab Tauhid</h4>
+                <p>by Ustadz Subhan Bawazier</p>
+            </div>
+        </div>
+    </div>
 </ng-template>
+
   

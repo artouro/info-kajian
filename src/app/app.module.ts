@@ -26,6 +26,7 @@ import { PemateriComponent } from './components/pemateri/pemateri.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SetNewProfileComponent } from './components/set-new-profile/set-new-profile.component';
+import { DetailKajianComponent } from './components/detail-kajian/detail-kajian.component';
 
 
 const appRoutes: Routes = [
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
       { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'profile/new', component: SetNewProfileComponent, canActivate: [AuthGuard] },
+      { path: 'profile/i/id_kajian', component: DetailKajianComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: 'login', component: LoginComponent },
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
     NotificationComponent,
     ProfileComponent,
     SetNewProfileComponent,
+    DetailKajianComponent,
   ],
   imports: [
     BrowserModule,

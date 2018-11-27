@@ -2,15 +2,15 @@
   <div class="container">
       <div *ngIf="user.profileSet || toggleForm;then profile else photo"></div>
       <ng-template #photo>
-          <div class="col-xs-12 offset-sm-4 content__header">
+          <div class="col-12 offset-sm-4 content__header">
               <h2>Setting Up Photo Profile</h2>
           </div>
-          <div class="col-xs-12 col-sm-4 offset-sm-4 content__body content-withSkip">
-              <div class="col-xs-12 text-right skip"><a (click)="toggleForm=true">Skip ></a></div>
-              <div class="col-xs-12 text-center profile-img-default">
+          <div class="col-12 col-sm-4 offset-sm-4 content__body content-withSkip">
+              <div class="col-12 text-right skip"><a (click)="toggleForm=true">Skip ></a></div>
+              <div class="col-12 text-center profile-img-default">
                   <img src="assets/component/images/user.png" width="100">
               </div>
-              <div class="col-xs-12 rules">
+              <div class="col-12 rules">
                   <label>Maximum Size : <span>1024 kB</span></label> <br>
                   <label>Allowed Type : <span>.jpg, .png</span></label> <br>
                   <label>Maximum Image Resolution : <span>600 x 600px</span></label>
@@ -25,11 +25,11 @@
           </div>
       </ng-template>
       <ng-template #profile>
-          <div class="col-xs-12 offset-sm-4 content__header">
+          <div class="col-12 offset-sm-4 content__header">
               <h2>Setting Up Profile</h2>
           </div>
-          <div class="col-xs-12 col-sm-4 offset-sm-4 content__body">
-              <div class="col-xs-12 text-center profile-img-default">
+          <div class="col-12 col-sm-4 offset-sm-4 content__body">
+              <div class="col-12 text-center profile-img-default">
                   <img [src]="user.photoUrl || 'assets/component/images/user.png'" width="100">
               </div>
               <form (ngSubmit)="submit()">

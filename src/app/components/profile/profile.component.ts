@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth/auth.service';
 import { UsersService } from '../../services/users/users.service';
+import { KajianService } from '../../services/kajian/kajian.service';
+import { User } from '../../models/user';
+import { Kajian } from '../../models/Kajian';
 
 @Component({
     selector: 'app-profile',
@@ -11,6 +13,7 @@ import { UsersService } from '../../services/users/users.service';
     styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+    kajian: Kajian[];
     user: User = {
         uid: '',
         photoUrl: '',
@@ -27,11 +30,17 @@ export class ProfileComponent implements OnInit {
         private afs: AngularFirestore,
         private afStorage: AngularFireStorage,
         public auth: AuthService,
-        private users: UsersService
+        private users: UsersService,
+        private kajianService: KajianService
     ) {}
 
     ngOnInit() {
         this.auth.user.subscribe(user => {
+            let username = user.username;
+            this.kajianService.getKajianSaya(username).subscribe(data => {
+                this.kajian = data;
+                console.log(this.kajian);
+            });
             if (user.photoUrl != null) {
                 const storage = this.afStorage.ref('userPhoto/' + user.photoUrl);
                 const url = storage.getDownloadURL().subscribe({
