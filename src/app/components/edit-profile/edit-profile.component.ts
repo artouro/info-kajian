@@ -37,7 +37,7 @@ export class EditProfileComponent implements OnInit {
     this.auth.user.subscribe(data => {
       this.userService.getDataProfile(data.username).subscribe(res => {
         this.uid = res[0].uid;
-        this.afs.collection('users').doc(this.uid).ref.get<User>().then(doc => {
+        this.afs.collection('users').doc(this.uid).ref.get().then(doc => {
           this.user = doc.data();
         });
       });
