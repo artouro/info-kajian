@@ -45,13 +45,9 @@
                   </div>
                   <div class="form-group">
                       <label for="city">Kota</label>
-                      <select class="form-control" [(ngModel)]="user.kota" name="city">
-                          <option value="">- Pilih Kota -</option>
-                          <option value="Bandung">Bandung</option>
-                          <option value="Jakarta">Jakarta</option>
-                      </select>
+                      <input type="text" class="form-control" [(ngModel)]="user.kota" name="city">
                   </div>
-                  <button type="submit" class="btn btn-info btn-block">Selanjutnya</button>
+                  <button type="submit" class="btn btn-info btn-block">Simpan</button>
               </form>
           </div>
       </ng-template>

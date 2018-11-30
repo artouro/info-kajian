@@ -34,6 +34,9 @@ export class SetNewProfileComponent implements OnInit {
 
     ngOnInit() {
         this.auth.user.subscribe(user => {
+            if(user.profileSet == true){
+                this.router.navigate(['/profile']);
+            }
             if (user.photoUrl != null) {
                 const storage = this.afStorage.ref('userPhoto/' + user.photoUrl);
                 const url = storage.getDownloadURL().subscribe({

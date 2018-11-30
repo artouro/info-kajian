@@ -3,6 +3,7 @@ import { KajianService } from '../../services/kajian/kajian.service';
 import { Kajian } from '../../models/Kajian';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-tambah',
@@ -11,6 +12,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class TambahComponent implements OnInit {
   kajian: Kajian = {
+    author: '',
     judul: '',
     pemateri: '',
     lokasi: '',
@@ -18,9 +20,17 @@ export class TambahComponent implements OnInit {
     kategori: ''
   };
   selectedFile: File = null;
-  constructor(private kajianService: KajianService, private afs: AngularFirestore ,private afStorage: AngularFireStorage) { }
+  constructor(
+    private kajianService: KajianService, 
+    private afs: AngularFirestore ,
+    private afStorage: AngularFireStorage,
+    private auth: AuthService
+    ){ }
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      this.kajian.author = user.username;
+    })
   }
 
   selectFile(event){

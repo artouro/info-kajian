@@ -6,9 +6,9 @@
         <div class="row">
             <div class="col-12 col-md-4 content__body min-padding">
                 <div class="profile__editBtn text-right">
-                    <button class="btn btn-warning">Ubah Profil</button>
+                    <a class="btn btn-warning" routerLink="/profile/edit">Ubah Profil</a>
                 </div>
-                <div class="profile__photo text-center">
+                <div class="profile__photo text-center" *ngIf="user.photoUrl?.length > 0; else noImg">
                     <img [src]="user.photoUrl || assets/component/images/user.png">
                 </div>
                 <div class="profile__data text-center">
@@ -33,54 +33,13 @@
                 <div class="kajian-saya">
                     <div class="col">
                         <ul>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/kajian1.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/soc.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/kajian1.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/soc.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=100">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/kajian1.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/profile/i/id_kajian">
-                                    <img src="../../assets/component/images/soc.jpg">
+                            <li *ngFor="let data of kajian">
+                                <a routerLink="/profile/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
+                                    <img [src]="data.poster">
                                 </a>
                             </li>
                         </ul>
-                    </div>
-                            
+                    </div>     
                 </div>
             </div>
         </div>
@@ -102,4 +61,8 @@
     </div>
 </ng-template>
 
-  
+<ng-template #noImg>
+    <div class="kajian-img-loader">
+        <small>Loading ...</small>
+    </div>
+</ng-template>

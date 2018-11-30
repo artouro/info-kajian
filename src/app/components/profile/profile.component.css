@@ -18,7 +18,7 @@
     color: orange;
 
 }
-.profile__editBtn button {
+.profile__editBtn a {
     font-size: .6rem;
     color: #fff;
     padding: .4em .8em !important;

@@ -39,8 +39,14 @@ export class ProfileComponent implements OnInit {
             let username = user.username;
             this.kajianService.getKajianSaya(username).subscribe(data => {
                 this.kajian = data;
-                console.log(this.kajian);
-            });
+                data.map(res => {
+                  let storage = this.afStorage.ref('poster/' + res.poster);
+                  let url = storage.getDownloadURL().subscribe({
+                    next(data) { res.poster = data; }
+                  });
+                  res.poster = url;
+                });
+              });
             if (user.photoUrl != null) {
                 const storage = this.afStorage.ref('userPhoto/' + user.photoUrl);
                 const url = storage.getDownloadURL().subscribe({

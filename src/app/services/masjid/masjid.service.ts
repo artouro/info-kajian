@@ -38,4 +38,9 @@ export class MasjidService {
     this.mapping(this.userCollection.snapshotChanges());
     return this.user;
   }
+  getDataProfile(username){
+    this.userCollection = this.afs.collection('users', ref => ref.where('username', '==', username).limit(1));
+    this.mapping(this.userCollection.snapshotChanges());
+    return this.user;
+  }
 }

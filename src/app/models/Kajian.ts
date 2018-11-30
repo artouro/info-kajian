@@ -1,4 +1,6 @@
 export interface Kajian {
+    author?: string;
+    photoUrl?: string;
     id?: string;
     judul?: string;
     pemateri?: string;

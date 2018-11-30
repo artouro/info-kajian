@@ -25,3 +25,19 @@
 .content__body.kajian {
 	padding-top: 1.5em !important;
 }
+#dropdownOption {
+	padding: .5em 1em;
+	border-radius: 50%;
+	background-color: #f0f0f0;
+	transition: .2s;
+}
+#dropdownOption i {
+	color: #666;
+	line-height: 1em;
+}
+#dropdownOption:hover {
+	border-radius: 4px;
+}
+#dropdownOption:active {
+	background-color: #cdcdcd;
+}

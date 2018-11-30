@@ -12,41 +12,43 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class KajianComponent implements OnInit {
   kajian: Kajian[];
-  majelis: User[];
-  masjid: User[];
-  pemateri: User[];
+  tablighAkbar: Kajian[];
+  rutin: Kajian[];
+  tematik: Kajian[];
   constructor(private kajianService: KajianService, private masjidService: MasjidService, public afStorage: AngularFireStorage) {
   }
 
   ngOnInit() {
     this.kajianService.getKajian().subscribe(data => {
       this.kajian = data;
+      // getting kajian poster from FireStorage 
+      // based on filename in document.poster
       data.map(res => {
-        let storage = this.afStorage.ref('poster/' + res.poster);
-        let url = storage.getDownloadURL().subscribe({
+        let posterStorage = this.afStorage.ref('poster/' + res.poster);
+        let url = posterStorage.getDownloadURL().subscribe({
           next(data) { res.poster = data; }
         });
         res.poster = url;
       });
     });
-    this.getDataMasjid();
-    this.getDataMajelis();
-    this.getDataPemateri();
+    this.getDataRutin();
+    this.getDataTematik();
+    this.getDataTablighAkbar();
   }
 
-  getDataMasjid(){
-    this.masjidService.getMasjid().subscribe(data => {
-      this.masjid = data;
+  getDataTablighAkbar(){
+    this.kajianService.getKajianCategory('Tabligh Akbar').subscribe(data => {
+      this.tablighAkbar = data;
     });
   }
-  getDataMajelis(){
-    this.masjidService.getMajelis().subscribe(data => {
-      this.majelis = data;
+  getDataTematik(){
+    this.kajianService.getKajianCategory('Tematik').subscribe(data => {
+      this.tematik = data;
     });
   }
-  getDataPemateri(){
-    this.masjidService.getPemateri().subscribe(data => {
-      this.pemateri = data;
+  getDataRutin(){
+    this.kajianService.getKajianCategory('Rutin').subscribe(data => {
+      this.rutin = data;
     });
   }
 

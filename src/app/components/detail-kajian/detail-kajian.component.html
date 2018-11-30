@@ -4,7 +4,7 @@
 	  <div class="col-8 author">
 	        <a href="#">
 	          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="">
-	          <span>Author's Name</span>
+	          <span>{{ kajian.author }}</span>
 	        </a>
 	  </div>
 	  <div class="col-4 option text-right dropdown">
@@ -12,27 +12,31 @@
 		    <i class="fa fa-ellipsis-v"></i>
 		  </button>
 		  <div class="dropdown-menu" aria-labelledby="dropdownOption">
-		    <a class="dropdown-item" href="#">Action</a>
-		    <a class="dropdown-item" href="#">Another action</a>
-		    <a class="dropdown-item" href="#">Something else here</a>
+		    <a class="dropdown-item" routerLink="/profile/e/{{id}}">Edit</a>
+		    <button class="dropdown-item" (click)="delete(id)">Delete</button>
 		  </div>
 	  </div>
 	</div>
-  <div class="kajian-img">
-    <img src="../../assets/component/images/kajian1.jpg">
+  <div class="kajian-img" *ngIf="kajian.poster?.length > 0; else noImg">
+    <img [src]="kajian.poster">
   </div>
   <div class="kajian-title">
-    <h2>Kajian Tauhid</h2>
-    <p>by Ustadz Subhan Bawazier
+    <h2>{{ kajian.judul}}</h2>
+    <p>by {{ kajian.pemateri }}
     </p>
   </div>
     <hr>
   <div  class="kajian-desc">
     <p>
-      <span>Masjid Ibadurrahman</span> <br>
-      30 November 2018
+			<span>{{ kajian.lokasi }}</span> <br>
+			{{ kajian.tanggal }}
     </p>
-    <div class="kajian-kategori"><a href="#">Tabligh Akbar</a></div>
+    <div class="kajian-kategori"><a href="#">{{ kajian.kategori }}</a></div>
   </div>
 </div>
 </div>
+<ng-template #noImg>
+	<div class="kajian-img-loader">
+		Loading ...
+	</div>
+</ng-template>

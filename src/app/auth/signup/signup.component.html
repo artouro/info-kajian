@@ -6,7 +6,8 @@
         </div>
         <form [formGroup]="userForm" class="login100-form validate-form" (ngSubmit)="register()">
           <span class="login100-form-title">
-              Sistem Informasi Jadwal Kajian Islam
+              SIJAKI <br>
+              <small style="font-family: sans-serif; font-size: 1rem; color: #999;">Sistem Informasi Jadwal Kajian Islam</small>
           </span>
           <app-notification></app-notification>
           <div class="wrap-input100 validate-input">
@@ -36,7 +37,7 @@
               <option value="" disabled selected="">Register Sebagai</option>
               <option value="1">Masjid</option>
               <option value="2">Majelis</option>
-              <option value="3">Ustadz</option>
+              <option value="3">Pemateri</option>
               <option value="4">User</option>
             </select>
             <span class="focus-input100"></span>

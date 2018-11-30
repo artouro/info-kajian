@@ -29,13 +29,13 @@ export class SignupComponent implements OnInit {
       'email': 'Email must be a valid email',
     },
     'level': {
-      'required': 'Email is required.',
+      'required': 'This is required.',
     },
     'nama': {
-      'required': 'Email is required.',
+      'required': 'Name is required.',
     },
     'username': {
-      'required': 'Email is required.',
+      'required': 'Username is required.',
     },
     'password': {
       'required': 'Password is required.',

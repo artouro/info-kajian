@@ -10,7 +10,7 @@
           <div class="col-12 author">
                 <a href="#">
                   <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="">
-                  <span>Author's Name</span>
+                  <span>{{ data.author }}</span>
                 </a>
           </div>
           <div class="kajian-img" *ngIf="data.poster?.length > 0; else noImg">
@@ -33,26 +33,28 @@
       </div>
   </div>
 </section>
-<section id="content-tab" class="content-tab">
+<section id="content-tab" class="content-tab col-lg-6 offset-lg-3">
   <div class="container">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Masjid</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Rutin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Majelis</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tematik</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pemateri</a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Tabligh Akbar</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div *ngIf="masjid?.length > 0; else noData">
-          <div *ngFor="let data of masjid">
+        <div *ngIf="rutin?.length > 0; else noData">
+          <div *ngFor="let data of rutin">
             <div class="masjid-title">
-              <h4>{{ data.nama }}</h4>
-              <p>@{{ data.username }}<br></p>
+              <h4>{{ data.judul }}</h4>
+              <p>@{{ data.pemateri }}<br>
+              {{ data.lokasi }} <br> {{ data.tanggal }}
+              </p>
             </div>
               <hr>
             <div  class="text-right">
@@ -61,12 +63,14 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div *ngIf="majelis?.length > 0; else noData">
-          <div *ngFor="let data of majelis">
+      <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div *ngIf="tematik?.length > 0; else noData">
+          <div *ngFor="let data of tematik">
             <div class="masjid-title">
-              <h4>{{ data.nama }}</h4>
-              <p>@{{ data.username }}<br></p>
+              <h4>{{ data.judul }}</h4>
+              <p>@{{ data.pemateri }}<br>
+              {{ data.lokasi }} <br> {{ data.tanggal }}
+              </p>
             </div>
               <hr>
             <div  class="text-right">
@@ -75,12 +79,14 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <div *ngIf="pemateri?.length > 0; else noData">
-          <div *ngFor="let data of pemateri">
+      <div class="tab-pane fade show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div *ngIf="tablighAkbar?.length > 0; else noData">
+          <div *ngFor="let data of tablighAkbar">
             <div class="masjid-title">
-              <h4>{{ data.nama }}</h4>
-              <p>@{{ data.username }}<br></p>
+              <h4>{{ data.judul }}</h4>
+              <p>@{{ data.pemateri }}<br>
+              {{ data.lokasi }} <br> {{ data.tanggal }}
+              </p>
             </div>
               <hr>
             <div  class="text-right">
@@ -94,7 +100,7 @@
 </section>
 
 <ng-template #noData>
-  <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body">
+  <div class="text-center">
     <p>Data tidak ditemukan.</p>
   </div>
 </ng-template>

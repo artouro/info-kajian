@@ -1,0 +1,28 @@
+<section id="content">
+    <div class="container">
+        <div class="col-12 offset-md-2 offset-lg-3 content__header">
+            <h2>Edit Profile</h2>
+        </div>
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="nama">Nama</label>
+                  <input type="text" class="form-control" id="judul" [(ngModel)]="user.nama" name="nama" placeholder="Masukkan lengkap">
+                </div>
+                <div class="form-group">
+                  <label for="kota">Kota</label>
+                  <input type="text" class="form-control" id="kota" [(ngModel)]="user.kota" name="kota" placeholder="Masukkan nama kota">
+                </div>
+                <div class="form-group">
+                  <label for="lokasi">Telepon</label>
+                  <input type="text" class="form-control" id="telp" [(ngModel)]="user.telp" name="telp" placeholder="Masukkan nomor telepon">
+                </div>
+                <div class="form-group">
+                  <label for="poster">Foto Profil</label>
+                  <input type="file" class="form-control" id="poster" [(ngModel)]="user.photoUrl" name="photoUrl" (change)="selectFile($event)" accept=".jpg,.jpeg,.png">
+                </div>
+              <button type="submit" class="btn btn-info btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+  </section>

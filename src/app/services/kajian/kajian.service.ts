@@ -36,8 +36,14 @@ export class KajianService {
     return this.kajian;
   }
   getKajianSaya(username) {
-    this.kajianCollection = this.afs.collection('kajian', ref => ref.where('username', '==', username));
+    this.kajianCollection = this.afs.collection('kajian', ref => ref.where('author', '==', username));
     this.mapping(this.kajianCollection.snapshotChanges());
+    return this.kajian;
+  }
+  getKajianCategory(category:string){
+    this.kajianCollection = this.afs.collection('kajian', ref => ref.where('kategori', '==', category));
+    this.mapping(this.kajianCollection.snapshotChanges());
+    console.log(this.kajian);
     return this.kajian;
   }
   addKajian(kajian: Kajian) {

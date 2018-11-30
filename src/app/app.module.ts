@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +27,9 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { SetNewProfileComponent } from './components/set-new-profile/set-new-profile.component';
 import { DetailKajianComponent } from './components/detail-kajian/detail-kajian.component';
+import { EditComponent } from './components/kajian/edit/edit.component';
+import { NotFoundComponent } from './templates/not-found/not-found.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 const appRoutes: Routes = [
@@ -38,11 +41,14 @@ const appRoutes: Routes = [
       { path: 'pemateri', component: PemateriComponent, canActivate: [AuthGuard] },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'profile/new', component: SetNewProfileComponent, canActivate: [AuthGuard] },
-      { path: 'profile/i/id_kajian', component: DetailKajianComponent, canActivate: [AuthGuard] },
+      { path: 'profile/d/:id', component: DetailKajianComponent, canActivate: [AuthGuard] },
+      { path: 'profile/e/:id', component: EditComponent, canActivate: [AuthGuard] },
+      { path: 'profile/edit', component: EditProfileComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -63,6 +69,9 @@ const appRoutes: Routes = [
     ProfileComponent,
     SetNewProfileComponent,
     DetailKajianComponent,
+    EditComponent,
+    NotFoundComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +84,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
