@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { KajianService } from '../../services/kajian/kajian.service';
 import { MasjidService } from '../../services/masjid/masjid.service';
 import { Kajian } from '../../models/Kajian';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 import { User } from '../../models/User';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { formatDate } from '@angular/common';
@@ -19,7 +21,11 @@ export class KajianComponent implements OnInit {
   kota: string = '';
   tgl: string = '';
   tanggal: string = '';
-  constructor(private kajianService: KajianService, private masjidService: MasjidService, public afStorage: AngularFireStorage) {
+  constructor(
+    private kajianService: KajianService, 
+    private masjidService: MasjidService, 
+    private afStorage: AngularFireStorage
+  ) { 
   }
 
   ngOnInit() {

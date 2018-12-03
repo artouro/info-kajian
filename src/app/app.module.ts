@@ -29,6 +29,7 @@ import { DetailKajianComponent } from './components/detail-kajian/detail-kajian.
 import { EditComponent } from './components/kajian/edit/edit.component';
 import { NotFoundComponent } from './templates/not-found/not-found.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 
 const appRoutes: Routes = [
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
       { path: 'p/:username', component: ProfileComponent, canActivate: [AuthGuard] },
     ]
   },
+  { path: 'home', component: FrontpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: '**', component: NotFoundComponent }
@@ -70,7 +72,8 @@ const appRoutes: Routes = [
     DetailKajianComponent,
     EditComponent,
     NotFoundComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    FrontpageComponent
   ],
   imports: [
     BrowserModule,

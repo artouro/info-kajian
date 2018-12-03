@@ -1,5 +1,8 @@
-<div class="col-xs-12">
+<div class="col-xs-12" *ngIf="loggedIn; else frontpage">
 	<app-header></app-header>
       <router-outlet></router-outlet>
 	<app-footer></app-footer>
 </div>
+<ng-template #frontpage>
+	<app-frontpage></app-frontpage>
+</ng-template>
