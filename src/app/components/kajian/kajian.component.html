@@ -1,20 +1,38 @@
 <section id="content" class="content-kajian">
   <div class="container">
       <div class="row">
-        <div class="col offset-md-2 offset-lg-3 content__header">
-            <h2>List Kajian</h2>
+        <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 content__header">
+            <div class="form-group">
+              <label>Kota </label>
+              <select class="form-control">
+                <option>Bandung</option>
+                <option>Jakarta</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tanggal </label>
+              <br>
+              <div class="row">
+                <div class="col-4">
+                    <button class="btn btn-info btn-sm">Hari Ini</button></div>
+                <div class="col">
+                    <input class="form-control" type="date">
+                </div>
+              </div>
+            </div>
+            <h2>Kajian</h2>
         </div>
       </div>
       <div *ngIf="kajian?.length > 0; else noData">
-        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
+        <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 content__body kajian" *ngFor="let data of kajian">
           <div class="col-12 author">
-                <a href="#">
-                  <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="">
+                <a routerLink="/p/{{ data.author }}">
+                  <img src="../../../assets/component/images/user.png" alt="">
                   <span>{{ data.author }}</span>
                 </a>
           </div>
           <div class="kajian-img" *ngIf="data.poster?.length > 0; else noImg">
-            <img src="{{ data.poster }}">
+            <a routerLink="d/{{ data.id }}"><img src="{{ data.poster }}"></a>
           </div>
           <div class="kajian-title">
             <h2>{{ data.judul }}</h2>
@@ -47,54 +65,57 @@
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
+      <!-- Tab Rutin -->
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div *ngIf="rutin?.length > 0; else noData">
           <div *ngFor="let data of rutin">
-            <div class="masjid-title">
-              <h4>{{ data.judul }}</h4>
-              <p>@{{ data.pemateri }}<br>
-              {{ data.lokasi }} <br> {{ data.tanggal }}
-              </p>
-            </div>
+            <a routerLink="/d/{{ data.id }}">
+              <div class="masjid-title">
+                <h4>{{ data.judul }}</h4>
+                <p>@{{ data.pemateri }}<br>
+                {{ data.lokasi }} <br> {{ data.tanggal }}
+                </p>
+              </div>
+            </a>
               <hr>
-            <div  class="text-right">
-              <a href="#" class="btn btn-info btn-sm">View Details</a>
-            </div>
           </div>
         </div>
       </div>
+      <!-- End Of Tab Rutin -->
+      <!-- Tab Tematik -->
       <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div *ngIf="tematik?.length > 0; else noData">
           <div *ngFor="let data of tematik">
-            <div class="masjid-title">
-              <h4>{{ data.judul }}</h4>
-              <p>@{{ data.pemateri }}<br>
-              {{ data.lokasi }} <br> {{ data.tanggal }}
-              </p>
-            </div>
+            <a routerLink="/d/{{ data.id }}">
+              <div class="masjid-title">
+                <h4>{{ data.judul }}</h4>
+                <p>{{ data.pemateri }}<br>
+                {{ data.lokasi }} <br> {{ data.tanggal }}
+                </p>
+              </div>
+            </a>
               <hr>
-            <div  class="text-right">
-              <a href="#" class="btn btn-info btn-sm">View Details</a>
-            </div>
           </div>
         </div>
       </div>
+      <!-- End of Tab Tematik -->
+      <!-- Tab Tabligh Akbar -->
       <div class="tab-pane fade show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <div *ngIf="tablighAkbar?.length > 0; else noData">
           <div *ngFor="let data of tablighAkbar">
-            <div class="masjid-title">
-              <h4>{{ data.judul }}</h4>
-              <p>{{ data.pemateri }}<br>
-              {{ data.lokasi }} <br> {{ data.tanggal }}
-              </p>
-            </div>
+            <a routerLink="/d/{{ data.id }}">
+              <div class="masjid-title">
+                <h4>{{ data.judul }}</h4>
+                <p>{{ data.pemateri }}<br>
+                {{ data.lokasi }} <br> {{ data.tanggal }}
+                </p>
+              </div>
+            </a>
               <hr>
-            <div  class="text-right">
-              <a href="#" class="btn btn-info btn-sm">View Details</a>
-            </div>
           </div>
         </div>
       </div>
+      <!-- End of Tab Tabligh Akbar -->
     </div>
   </div>
 </section>

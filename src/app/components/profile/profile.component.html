@@ -2,44 +2,45 @@
     <div class="container">
         <!-- <div class="col-3 content__header">
             <h2>Profile</h2>
-        </div> -->
+        </div> --><img src="{{link}}">
         <div class="row">
             <div class="col-12 col-md-4 content__body min-padding">
-                <div class="profile__editBtn text-right">
-                    <a class="btn btn-warning" routerLink="/profile/edit">Ubah Profil</a>
+                <div class="profile__editBtn text-right" *ngIf="authUsername">
+                    <a class="btn btn-warning" routerLink="/p/{{ user.username }}/edit">Ubah Profil</a>
                 </div>
-                <div class="profile__photo text-center" *ngIf="user.photoUrl?.length > 0; else noImg">
-                    <img [src]="user.photoUrl || assets/component/images/user.png">
+                <div class="profile__photo text-center">
+                    <img [src]="user.photoUrl" *ngIf="user.photoUrl?.length > 0; else defaultPhoto">
+                    <ng-template #defaultPhoto>
+                            <img src="../../../assets/component/images/user.png">
+                    </ng-template>
                 </div>
                 <div class="profile__data text-center">
                     <h3>{{ user.nama }}</h3>
                     <p>@{{ user.username }}</p>
+                        <button class="btn btn-primary followBtn" (click)="follow(user.username)" *ngIf="!authUsername && following == false">Follow</button>
+                        <button class="btn btn-danger followBtn" (click)="unfollow(user.username)" *ngIf="!authUsername && following == true">Unfollow</button>
                     <hr>
                     <ul class="text-left">
-                        <li><i class="fa fa-map-marker-alt"></i>{{ user.kota }}</li>
+                        <li><i class="fa fa-map-marker-alt"></i> {{ user.kota }}</li>
                         <li><i class="fa fa-envelope"></i>{{ user.email }}</li>
                         <li><i class="fa fa-phone"></i>{{ user.telp }}</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-md-7 content__body">
+            <div class="col-12 col-md-7 content__body" *ngIf="user.level != 4; else guestTab">
                 <h5>Kajian Saya</h5>
-                <!-- <div *ngIf="kajian?.length > 0; else noData">
-                    <div *ngFor="let data of kajian">
-                        <h4></h4>
-                        <p></p>
-                    </div>
-                </div> -->
                 <div class="kajian-saya">
-                    <div class="col">
-                        <ul>
-                            <li *ngFor="let data of kajian">
-                                <a routerLink="/profile/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
-                                    <img [src]="data.poster">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>     
+                    <div *ngIf="kajian?.length > 0; else noData">
+                        <div class="col">
+                            <ul>
+                                <li *ngFor="let data of kajian">
+                                    <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
+                                        <img [src]="data.poster">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>     
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,22 +48,28 @@
 </section>
 
 <ng-template #noData>
-    <!-- <p class="text-center small-grey">Data kajian anda tidak ditemukan.</p> -->
-    <div class="kajian-saya">
-        <div class="row">
-            <div class="col-3 kajian-saya-img">
-                <img src="https://pintuilmuyoga.files.wordpress.com/2017/12/img_20171216_010550.png?w=300">
-            </div>
-            <div class="col-9 kajian-saya-info">
-                <h4>Kitab Tauhid</h4>
-                <p>by Ustadz Subhan Bawazier</p>
+    <p class="text-center small-grey">Data kajian anda tidak ditemukan.</p>
+</ng-template>
+<ng-template #noFollowing>
+    <p class="text-center small-grey">
+        Anda tidak mengikuti siapapun.
+    </p>
+</ng-template>
+<ng-template #guestTab>
+    <div class="col-12 col-md-7 content__body">
+        <h5>Following</h5>
+        <div class="kajian-saya">
+            <div *ngIf="kajian?.length > 0; else noFollowing">
+                <div class="col">
+                    <ul>
+                        <li *ngFor="let data of kajian">
+                            <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
+                                <img [src]="data.poster">
+                            </a>
+                        </li>
+                    </ul>
+                </div>     
             </div>
         </div>
-    </div>
-</ng-template>
-
-<ng-template #noImg>
-    <div class="kajian-img-loader">
-        <small>Loading ...</small>
     </div>
 </ng-template>

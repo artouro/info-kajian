@@ -11,6 +11,9 @@
 .kajian-img-loader {
     text-align: center;
 }
+a .masjid-title {
+	font-size: .7rem;
+}
 .kajian-img {
 	border-radius: 8px;
 }
@@ -33,4 +36,20 @@
 }
 .content__body.kajian {
 	padding-top: 1.5em !important;
+}
+.nav-tabs {
+	margin-bottom: 3px;
+}
+.nav-item {
+	white-space: nowrap;
+	margin: 3px;
+	border-radius: 8px;
+	box-shadow: 0 2px 2px rgba(0,0,0,.1);
+}
+.nav-item .active {
+	border-radius: 8px;
+}
+.tab-content {
+	padding: 9px;
+	border-radius: 8px;
 }

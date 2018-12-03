@@ -1,0 +1,17 @@
+.notification {
+    padding: .5em 2em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+.is-danger {
+    background: #D93246;
+    color: #fff;
+}
+.is-success {
+    background: #28a745;
+    color: #fff;
+}
+.is-info {
+    background: #007bff;
+    color: #fff;
+}

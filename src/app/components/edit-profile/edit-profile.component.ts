@@ -19,7 +19,6 @@ export class EditProfileComponent implements OnInit {
    nama: '',
    photoUrl: '',
    telp: '',
-   uid: '', 
    username : ''
  };
  username;
@@ -35,6 +34,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(data => {
+      this.username = data.username;
       this.userService.getDataProfile(data.username).subscribe(res => {
         this.uid = res[0].uid;
         this.afs.collection('users').doc(this.uid).ref.get().then(doc => {
@@ -47,21 +47,24 @@ export class EditProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
   onSubmit(){
+    console.log(this.user);
     this.afs.collection('users').doc(this.uid).update(this.user).then(() => {
       console.log("Data successfully updated!");
-      let ext = this.selectedFile.name.split('.').pop();
+      if(this.selectedFile != null ){
+        let ext = this.selectedFile.name.split('.').pop();
 
-      // Set filename ..
-      let filename = `${this.uid}.${ext}`;
+        // Set filename ..
+        let filename = `${this.uid}.${ext}`;
 
-      // Uploading ..
-      this.afStorage.upload(`/userPhoto/${filename}`, this.selectedFile); 
-      
-      // Menambahkan field 'poster' ke document yg baru saja di-add ..
-      this.afs.collection('users').doc(this.uid)
-       .set({ photoUrl: filename }, { merge: true });
+        // Uploading ..
+        this.afStorage.upload(`/userPhoto/${filename}`, this.selectedFile); 
+        
+        // Menambahkan field 'poster' ke document yg baru saja di-add ..
+        this.afs.collection('users').doc(this.uid)
+        .set({ photoUrl: filename }, { merge: true });
+      }
     }).then(() => {
-      return this.router.navigate(['/profile']);
+      return this.router.navigate([`/p/${this.username  }`]);
     })
   }
 }

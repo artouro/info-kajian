@@ -32,7 +32,16 @@ export class AuthService {
             })
         );
     }
-
+    getDataProfile(username){
+        this.afs.collection('users', ref => ref.where('username', '==', username)).snapshotChanges().map(changes => {
+            return changes.map(result => {
+                const data = result.payload.doc as User;
+                data.uid = result.payload.doc.id;
+                console.log(data);
+                return data;
+            });
+        });
+    }
     login(email: string, password: string) {
         return this.afAuth.auth
             .signInWithEmailAndPassword(email, password)
@@ -49,7 +58,7 @@ export class AuthService {
             .createUserWithEmailAndPassword(form.value['email'], form.value['password'])
             .then(credential => {
                 this.notify.update('Welcome new user!', 'success');
-                this.router.navigate(['/profile/new']);
+                this.router.navigate(['/set-new-profile']);
                 // return this.updateUserData(credential.user); // if using firestore
                 const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${credential.user.uid}`);
 

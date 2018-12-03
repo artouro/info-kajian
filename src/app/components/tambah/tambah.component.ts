@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { KajianService } from '../../services/kajian/kajian.service';
 import { Kajian } from '../../models/Kajian';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from '../../models/User';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -13,12 +14,15 @@ import { AuthService } from '../../services/auth/auth.service';
 export class TambahComponent implements OnInit {
   kajian: Kajian = {
     author: '',
+    authorPhoto: '',
     judul: '',
     pemateri: '',
     lokasi: '',
     tanggal: '',
     kategori: ''
   };
+  user: User[];
+  userCollection: AngularFirestoreCollection;
   selectedFile: File = null;
   constructor(
     private kajianService: KajianService, 
@@ -30,7 +34,26 @@ export class TambahComponent implements OnInit {
   ngOnInit() {
     this.auth.user.subscribe(user => {
       this.kajian.author = user.username;
-    })
+      this.userCollection = this.afs.collection('users', ref => ref.where('username', '==', user.username));
+      let result = this.userCollection.snapshotChanges().map(changes => {
+        return changes.map(result => {
+          const data = result.payload.doc.data();
+          data.id = result.payload.doc.id;
+          return data; 
+        })
+      });
+      result.subscribe(data => {
+        this.user = data;
+        data.map(res => {
+          let storage = this.afStorage.ref('userPhoto/' + res.photoUrl);
+          let url = storage.getDownloadURL().subscribe({ 
+            next(data) { res.photoUrl = data; } 
+          });
+          res.photoUrl = url;
+        });
+        // this.user.map(data => { console.log(data) });
+      });
+    });
   }
 
   selectFile(event){

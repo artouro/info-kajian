@@ -7,13 +7,13 @@
           </div>
           <div class="col-12 col-sm-4 offset-sm-4 content__body content-withSkip">
               <div class="col-12 text-right skip"><a (click)="toggleForm=true">Skip ></a></div>
-              <div class="col-12 text-center profile-img-default">
+              <div class="col-12 text-center">
                   <img src="assets/component/images/user.png" width="100">
               </div>
               <div class="col-12 rules">
-                  <label>Maximum Size : <span>1024 kB</span></label> <br>
+                  <!-- <label>Maximum Size : <span>1024 kB</span></label> <br> -->
                   <label>Allowed Type : <span>.jpg, .png</span></label> <br>
-                  <label>Maximum Image Resolution : <span>600 x 600px</span></label>
+                  <!-- <label>Maximum Image Resolution : <span>600 x 600px</span></label> -->
               </div>
               <form (ngSubmit)="setPhotoProfile()">
                   <div class="form-group text-center">
@@ -30,7 +30,10 @@
           </div>
           <div class="col-12 col-sm-4 offset-sm-4 content__body">
               <div class="col-12 text-center profile-img-default">
-                  <img [src]="user.photoUrl || 'assets/component/images/user.png'" width="100">
+                  <img [src]="user.photoUrl" *ngIf="user.photoUrl != ''; else imgDefault">
+                  <ng-template #imgDefault>
+                      <img src="../../../assets/component/images/user.png">
+                  </ng-template>
               </div>
               <form (ngSubmit)="submit()">
                   <div class="form-group">

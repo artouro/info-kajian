@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth/auth.service';
 import { UsersService } from '../../services/users/users.service';
 import { KajianService } from '../../services/kajian/kajian.service';
 import { User } from '../../models/user';
 import { Kajian } from '../../models/Kajian';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-profile',
@@ -14,6 +15,7 @@ import { Kajian } from '../../models/Kajian';
 })
 export class ProfileComponent implements OnInit {
     kajian: Kajian[];
+    userCollection : AngularFirestoreCollection<User>;
     user: User = {
         uid: '',
         photoUrl: '',
@@ -22,41 +24,67 @@ export class ProfileComponent implements OnInit {
         kota: '',
         profileSet: false
     };
+    following = false;
     selectedFile: File = null;
     toggleForm: boolean = false;
     activeBtn: boolean = true;
-
+    username;
+    authUsername = false;
     constructor(
         private afs: AngularFirestore,
         private afStorage: AngularFireStorage,
-        public auth: AuthService,
+        private auth: AuthService,
         private users: UsersService,
-        private kajianService: KajianService
+        private kajianService: KajianService,
+        private activatedRoute: ActivatedRoute,
     ) {}
 
     ngOnInit() {
+        this.username = this.activatedRoute.snapshot.paramMap.get('username');
         this.auth.user.subscribe(user => {
-            let username = user.username;
-            this.kajianService.getKajianSaya(username).subscribe(data => {
-                this.kajian = data;
-                data.map(res => {
-                  let storage = this.afStorage.ref('poster/' + res.poster);
-                  let url = storage.getDownloadURL().subscribe({
-                    next(data) { res.poster = data; }
-                  });
-                  res.poster = url;
+            if (user.username == this.username) this.authUsername = true;
+        });
+        //get data profile
+        this.userCollection = this.afs.collection('users', ref => ref.where('username', '==', this.username));
+        let data = this.userCollection.snapshotChanges().map(changes => {
+            return changes.map(result => {
+                const data = result.payload.doc.data() as User;
+                return data;
+            });
+        });
+        data.subscribe(data => {
+            data.map(res => {
+                this.user = res;
+                if(res.photoUrl != ''){
+                    let storage = this.afStorage.ref('userPhoto/' + res.photoUrl);
+                    let url = storage.getDownloadURL().subscribe({
+                    next(data) { res.photoUrl = data; }
+                    });
+                    res.photoUrl = url;
+                }
+            })
+        });
+
+        //get data kajian saya
+        this.kajianService.getKajianSaya(this.username).subscribe(data => {
+            this.kajian = data;
+            data.map(res => {
+                let storage = this.afStorage.ref('poster/' + res.poster);
+                let url = storage.getDownloadURL().subscribe({
+                next(data) { res.poster = data; }
                 });
-              });
-            if (user.photoUrl != null) {
-                const storage = this.afStorage.ref('userPhoto/' + user.photoUrl);
-                const url = storage.getDownloadURL().subscribe({
-                    next(data) {
-                        user.photoUrl = data;
-                    }
-                });
-                user.photoUrl = url;
-                this.user = user;
-            }
+                res.poster = url;
+            });
+        });
+
+        // set follow/unfollow button
+        this.getAuthData().then((data: any) => {
+            if(data.following != null){
+                let arr = data.following;
+                if(arr.includes(this.username)){
+                   this.following = true; 
+                }
+            } 
         });
     }
 
@@ -84,6 +112,48 @@ export class ProfileComponent implements OnInit {
                     });
             });
         });
+    }
+
+    follow(username){
+        // this.auth.user.subscribe(data => {
+        //     let storage = this.afStorage.ref('userPhoto/' + data.photoUrl);
+        //     let url = storage.getDownloadURL().subscribe(url => this.link = url);
+        //     this.link = url;
+        // }); 
+        // this.afs.collection('users').doc(uid).set({ following : username } , { merge: true }).then(docRef => {
+        //     console.log(docRef);
+        // });
+        this.getAuthData().then((data: any) => {
+            if(data.following != null){
+                let arr = data.following;
+                if(!arr.includes(username)){
+                    arr.push(username);
+                    this.afs.collection('users').doc(data.uid).set({ following : arr } , { merge: true });
+                }
+            } else {
+                this.afs.collection('users').doc(data.uid).set({ following : [username] } , { merge: true });
+            }
+            this.following = true;
+        });
+    }  
+    unfollow(username){
+        this.getAuthData().then((data: any) => {
+            let followers = data.following;
+            let index = followers.indexOf(username);
+            if(index > -1){
+                followers.splice(index, 1);
+                this.afs.collection('users').doc(data.uid).set({ following : followers } , { merge: true });
+                this.following = false;
+            }
+        });
+    }  
+
+    getAuthData(){
+        return new Promise(resolve => {
+            this.auth.user.subscribe( (data: any) => {
+                resolve(data);
+            });
+        })
     }
 
     selectFile(event) {

@@ -7,14 +7,12 @@
       </div>
       <div *ngIf="user?.length > 0; else noData">
 	      <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 content__body masjid" *ngFor="let data of user">
-	          <div class="masjid-title">
-	            <h2>{{ data.nama }}</h2>
-	            <p>@{{ data.username }}<br>Jalan Ganesha no. 36, Bandung</p>
-	          </div>
-	            <hr>
-	          <div  class="text-right">
-	            <a href="#" class="btn btn-info btn-sm">View Details</a>
-	          </div>
+					<a routerLink="/p/{{ data.username }}">
+						<div class="masjid-title">
+							<h2>{{ data.nama }}</h2>
+							<p>@{{ data.username }}<br><!--Jalan Ganesha no. 36, Bandung--></p>
+						</div>
+					</a>
 	      </div>
 	    </div>
   </div>

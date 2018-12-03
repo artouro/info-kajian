@@ -3,7 +3,7 @@ import { KajianService } from '../../../services/kajian/kajian.service';
 import { Kajian } from '../../../models/Kajian';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -24,12 +24,13 @@ export class EditComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private afStorage: AngularFireStorage,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private kajianService: KajianService
   ) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.id = id;
     this.afs.collection('kajian').doc(id).ref.get().then(doc => {
       this.kajian = doc.data();
@@ -52,6 +53,8 @@ export class EditComponent implements OnInit {
       // Menambahkan field 'poster' ke document yg baru saja di-add ..
       this.afs.collection('kajian').doc(this.id)
        .set({ poster: filename }, { merge: true });
+    }).then(() => {
+      this.router.navigate([`/d/${this.id}`]);
     })
   }
 }

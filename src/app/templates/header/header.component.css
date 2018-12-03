@@ -1,3 +1,25 @@
+.navbar-brand img {
+	margin-right: .3em;
+}
+.navbar-brand {
+	font-weight: 700;
+	color: #F6970D;
+	position: relative;
+	padding-right: .25em;
+}
+.navbar-brand:hover {
+	color: #ED5F09;
+}
+.navbar-brand::after {
+	content: ' ';
+	width: 1px;
+	height: 15px;
+	background-color: #cdcdcd;
+	position: absolute;
+	top: 50%;
+	transform:translateY(-50%);
+	right: -.6em;
+}
 @media screen and (max-width: 767px){
 	.active {
         border-left: 2px solid orange;
@@ -13,5 +35,8 @@
 @media screen and (max-width: 768px){
 	.addBtn {
 		margin: 0 0 1em !important;
+	}
+	.navbar-brand::after {
+		background:transparent;
 	}
 }

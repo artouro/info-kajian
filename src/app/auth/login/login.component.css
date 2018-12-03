@@ -1,0 +1,17 @@
+.login100-form-title {
+    font-family: 'Lato', sans-serif !important;
+    font-size: 3rem;
+    padding-bottom: .5em !important;
+}
+.login100-form-title h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #F6970D;
+}
+.login100-form-title p {
+    font-size: .8rem;
+    color: #cdcdcd;
+}
+.email-input {
+    margin-top: .5em;
+}

@@ -1,6 +1,9 @@
 .kajian-img-loader {
     text-align: center;
 }
+button.dropdown-item {
+	font-size: .9rem;
+}
 .kajian-img {
 	border-radius: 8px;
 }
@@ -40,4 +43,7 @@
 }
 #dropdownOption:active {
 	background-color: #cdcdcd;
+}
+.detail-kajian {
+	margin-bottom : 5em;
 }

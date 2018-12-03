@@ -43,7 +43,6 @@ export class KajianService {
   getKajianCategory(category:string){
     this.kajianCollection = this.afs.collection('kajian', ref => ref.where('kategori', '==', category));
     this.mapping(this.kajianCollection.snapshotChanges());
-    console.log(this.kajian);
     return this.kajian;
   }
   addKajian(kajian: Kajian) {

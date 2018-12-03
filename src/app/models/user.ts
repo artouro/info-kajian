@@ -1,5 +1,5 @@
 export interface User {
-	uid: string;
+	uid?: string;
 	username?: string;
 	email?: string;
 	photoUrl?: any;
@@ -13,4 +13,5 @@ export interface User {
 	telp?: string;
 	kota?: string;
 	profileSet?: boolean;
+	following?: string[];
 }
