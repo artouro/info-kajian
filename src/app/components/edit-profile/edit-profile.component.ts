@@ -49,7 +49,6 @@ export class EditProfileComponent implements OnInit {
   onSubmit(){
     console.log(this.user);
     this.afs.collection('users').doc(this.uid).update(this.user).then(() => {
-      console.log("Data successfully updated!");
       if(this.selectedFile != null ){
         let ext = this.selectedFile.name.split('.').pop();
 

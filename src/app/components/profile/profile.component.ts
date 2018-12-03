@@ -7,6 +7,7 @@ import { KajianService } from '../../services/kajian/kajian.service';
 import { User } from '../../models/user';
 import { Kajian } from '../../models/Kajian';
 import { ActivatedRoute } from '@angular/router';
+import { MasjidService } from 'src/app/services/masjid/masjid.service';
 
 @Component({
     selector: 'app-profile',
@@ -15,6 +16,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
     kajian: Kajian[];
+    dataFollowing = [];
+    kajianFollowing: Kajian[];
+    dataFollowingActive: string;
     userCollection : AngularFirestoreCollection<User>;
     user: User = {
         uid: '',
@@ -36,6 +40,8 @@ export class ProfileComponent implements OnInit {
         private auth: AuthService,
         private users: UsersService,
         private kajianService: KajianService,
+        private userService: UsersService,
+        private masjidService: MasjidService,
         private activatedRoute: ActivatedRoute,
     ) {}
 
@@ -86,6 +92,17 @@ export class ProfileComponent implements OnInit {
                 }
             } 
         });
+        //get data following
+        this.getAuthData().then((data: any) => {
+            let arr = data.following;
+            for(let i = 0; i < arr.length; i++){
+                this.userService.getDataFollowing(arr[i]).subscribe(items => {
+                    this.dataFollowing[i] = items;
+                });
+            }
+        });
+
+        
     }
 
     setPhotoProfile() {
@@ -147,7 +164,14 @@ export class ProfileComponent implements OnInit {
             }
         });
     }  
-
+    showKajianFollowing(username){
+        this.kajianService.getKajianSaya(username).subscribe(data => {
+            this.kajianFollowing = data;
+        })
+        this.masjidService.getDataProfile(username).subscribe(data => {
+            this.dataFollowingActive = data[0].nama;
+        });
+    }
     getAuthData(){
         return new Promise(resolve => {
             this.auth.user.subscribe( (data: any) => {

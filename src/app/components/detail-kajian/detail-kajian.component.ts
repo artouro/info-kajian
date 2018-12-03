@@ -44,9 +44,8 @@ export class DetailKajianComponent implements OnInit {
   delete(id){
     this.afs.collection('kajian').doc(id).delete().then(
       () => {
-        console.log("Data successfully deleted");
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/p/' + this.authUsername]);
       }
-    ).catch(err => console.log('Error: ' + err));
+    );
   }
 }

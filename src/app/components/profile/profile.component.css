@@ -1,4 +1,4 @@
-.content__body {
+.content-wrapper {
     margin: 5px;
 }
 .profile__photo {
@@ -62,6 +62,74 @@
     margin-top: .3em;
     font-size: .7rem !important;
     padding: .3em 1.5em !important;
+}
+.following-list {
+    margin-top: 1em;
+}
+.following-list ul li {
+    display: inline-block;
+    margin: .4em;
+    padding: .5em 1em;
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.1);
+    transform: translateY(0);
+    cursor: pointer;
+    transition: .2s;
+}
+.following-list ul li:hover {
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    transform: translateY(3px);
+}
+.following-list ul li.active {
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    transform: translateY(3px);
+}
+.following-list h4 {
+    font-size: 1rem;
+}
+.following-list p {
+    font-size: .8rem;
+}
+.kajian-following h5 {
+    position: relative;
+    margin-bottom: 1em;
+}
+.kajian-following h5 small {
+    font-size: .8rem;
+    color: #999;
+}
+.kajian-following h5:before {
+    content: '';
+    width: 1em;
+    height: 2px;
+    background: #F5960D;
+    position: absolute;
+    bottom: -.4em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.kajian-following-list {
+    margin: .4em;
+    padding: 1em 1em;
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.1);
+    transform: translateY(0);
+    cursor: pointer;
+    transition: .2s;
+}
+.kajian-following-list h4 {
+    font-size: 1.5em;
+    color: #F5960D;
+} 
+
+.kajian-following-list p {
+    font-size: .8em;
+} 
+.kajian-following-list:hover {
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    transform: translateY(3px);
 }
 @media screen and (max-width: 575px){
     .kajian-saya .img { padding-left: 0; }

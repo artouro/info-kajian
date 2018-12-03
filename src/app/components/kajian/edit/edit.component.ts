@@ -42,18 +42,19 @@ export class EditComponent implements OnInit {
   }
   onSubmit(){
     this.afs.collection('kajian').doc(this.id).update(this.kajian).then(res => {
-      console.log("Data successfully updated!");
-      let ext = this.selectedFile.name.split('.').pop();
+      if(this.selectedFile != null ){
+        let ext = this.selectedFile.name.split('.').pop();
 
-      // Set filename ..
-      let filename = `${this.id}.${ext}`;
+        // Set filename ..
+        let filename = `${this.id}.${ext}`;
 
-      // Uploading ..
-      this.afStorage.upload(`/poster/${filename}`, this.selectedFile); 
-      
-      // Menambahkan field 'poster' ke document yg baru saja di-add ..
-      this.afs.collection('kajian').doc(this.id)
-       .set({ poster: filename }, { merge: true });
+        // Uploading ..
+        this.afStorage.upload(`/poster/${filename}`, this.selectedFile); 
+        
+        // Menambahkan field 'poster' ke document yg baru saja di-add ..
+        this.afs.collection('kajian').doc(this.id)
+        .set({ poster: filename }, { merge: true });
+      }
     }).then(() => {
       this.router.navigate([`/d/${this.id}`]);
     })

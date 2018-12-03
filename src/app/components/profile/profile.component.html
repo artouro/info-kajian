@@ -4,45 +4,76 @@
             <h2>Profile</h2>
         </div> --><img src="{{link}}">
         <div class="row">
-            <div class="col-12 col-md-4 content__body min-padding">
-                <div class="profile__editBtn text-right" *ngIf="authUsername">
-                    <a class="btn btn-warning" routerLink="/p/{{ user.username }}/edit">Ubah Profil</a>
-                </div>
-                <div class="profile__photo text-center">
-                    <img [src]="user.photoUrl" *ngIf="user.photoUrl?.length > 0; else defaultPhoto">
-                    <ng-template #defaultPhoto>
-                            <img src="../../../assets/component/images/user.png">
-                    </ng-template>
-                </div>
-                <div class="profile__data text-center">
-                    <h3>{{ user.nama }}</h3>
-                    <p>@{{ user.username }}</p>
-                        <button class="btn btn-primary followBtn" (click)="follow(user.username)" *ngIf="!authUsername && following == false">Follow</button>
-                        <button class="btn btn-danger followBtn" (click)="unfollow(user.username)" *ngIf="!authUsername && following == true">Unfollow</button>
-                    <hr>
-                    <ul class="text-left">
-                        <li><i class="fa fa-map-marker-alt"></i> {{ user.kota }}</li>
-                        <li><i class="fa fa-envelope"></i>{{ user.email }}</li>
-                        <li><i class="fa fa-phone"></i>{{ user.telp }}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-12 col-md-7 content__body" *ngIf="user.level != 4; else guestTab">
-                <h5>Kajian Saya</h5>
-                <div class="kajian-saya">
-                    <div *ngIf="kajian?.length > 0; else noData">
-                        <div class="col">
-                            <ul>
-                                <li *ngFor="let data of kajian">
-                                    <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
-                                        <img [src]="data.poster">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>     
+            <div class="col-12 col-md-4 content-wrapper">
+                <div class="content__body min-padding">
+                    <div class="profile__editBtn text-right" *ngIf="authUsername">
+                        <a class="btn btn-warning" routerLink="/p/{{ user.username }}/edit">Ubah Profil</a>
+                    </div>
+                    <div class="profile__photo text-center">
+                        <img [src]="user.photoUrl" *ngIf="user.photoUrl?.length > 0; else defaultPhoto">
+                        <ng-template #defaultPhoto>
+                                <img src="../../../assets/component/images/user.png">
+                        </ng-template>
+                    </div>
+                    <div class="profile__data text-center">
+                        <h3>{{ user.nama }}</h3>
+                        <p>@{{ user.username }}</p>
+                            <button class="btn btn-primary followBtn" (click)="follow(user.username)" *ngIf="!authUsername && following == false">Follow</button>
+                            <button class="btn btn-danger followBtn" (click)="unfollow(user.username)" *ngIf="!authUsername && following == true">Unfollow</button>
+                        <hr>
+                        <ul class="text-left">
+                            <li><i class="fa fa-map-marker-alt"></i> {{ user.kota }}</li>
+                            <li><i class="fa fa-envelope"></i>{{ user.email }}</li>
+                            <li><i class="fa fa-phone"></i>{{ user.telp }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-7">
+                <div class="content__body" *ngIf="user.level != 4">
+                    <h5>Kajian Saya</h5>
+                    <div class="kajian-saya">
+                        <div *ngIf="kajian?.length > 0; else noData">
+                            <div class="col">
+                                <ul>
+                                    <li *ngFor="let data of kajian">
+                                        <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
+                                            <img [src]="data.poster">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+                <div class="content__body">
+                    <h5>Following</h5>
+                    <div class="following-list">
+                        <ul>
+                            <li *ngFor="let item of dataFollowing">
+                                <div class="col" *ngFor="let val of item" (click)="showKajianFollowing(val.username)">
+                                    <h4>{{ val.nama }}</h4>
+                                    <p>{{ val.username }}</p>
+                                </div> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content__body kajian-following" *ngIf="kajianFollowing?.length > 0">
+                    <h5 class="text-center"><small>Daftar Kajian</small> <br>{{ dataFollowingActive }}</h5>
+                    <div *ngIf="kajianFollowing?.length > 0; else noDataKajianFollowing">
+                        <a *ngFor="let data of kajianFollowing" routerLink="/d/{{ data.id }}">
+                            <div class="kajian-following-list">
+                                <h4>{{ data.judul }}</h4>
+                                <p>{{ data.pemateri }}<br>
+                                {{ data.lokasi }}, {{ data.kota }} <br> {{ data.tanggal | date : "d MMMM yyyy" }}
+                                </p>
+                            </div>   
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Kajian Following -->
         </div>
     </div>
 </section>
@@ -50,26 +81,11 @@
 <ng-template #noData>
     <p class="text-center small-grey">Data kajian anda tidak ditemukan.</p>
 </ng-template>
+<ng-template #noDataKajianFollowing>
+    <p class="text-center small-grey">Data kajian tidak ditemukan.</p>
+</ng-template>
 <ng-template #noFollowing>
     <p class="text-center small-grey">
         Anda tidak mengikuti siapapun.
     </p>
-</ng-template>
-<ng-template #guestTab>
-    <div class="col-12 col-md-7 content__body">
-        <h5>Following</h5>
-        <div class="kajian-saya">
-            <div *ngIf="kajian?.length > 0; else noFollowing">
-                <div class="col">
-                    <ul>
-                        <li *ngFor="let data of kajian">
-                            <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
-                                <img [src]="data.poster">
-                            </a>
-                        </li>
-                    </ul>
-                </div>     
-            </div>
-        </div>
-    </div>
 </ng-template>
