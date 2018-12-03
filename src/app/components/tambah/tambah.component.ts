@@ -18,8 +18,9 @@ export class TambahComponent implements OnInit {
     judul: '',
     pemateri: '',
     lokasi: '',
-    tanggal: '',
-    kategori: ''
+    tanggal: new Date,
+    kategori: '',
+    kota: ''
   };
   user: User[];
   userCollection: AngularFirestoreCollection;
@@ -61,8 +62,8 @@ export class TambahComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.kajian.judul !== '' && this.kajian.pemateri !== '' && this.kajian.lokasi !== '' &&
-        this.kajian.tanggal !== '' && this.kajian.kategori !== '') {
+    if (this.kajian.judul !== '' && this.kajian.pemateri !== '' && this.kajian.lokasi !== '' && this.kajian.kota !== '' &&
+        this.kajian.kategori !== '') {
         this.kajianService.addKajian(this.kajian).then(docRef => {
           
           // Mengambil id doc kajian yang baru saja diupload ..
@@ -85,7 +86,8 @@ export class TambahComponent implements OnInit {
           this.kajian.judul = '';
           this.kajian.pemateri = '';
           this.kajian.lokasi = '';
-          this.kajian.tanggal = '';
+          this.kajian.kota = '';
+          this.kajian.tanggal = new Date;
           this.kajian.kategori = '';
         });
     }

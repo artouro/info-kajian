@@ -19,8 +19,12 @@
                 <input type="text" class="form-control" id="lokasi" [(ngModel)]="kajian.lokasi" name="lokasi" placeholder="Masukkan lokasi kajian">
               </div>
               <div class="form-group">
+                <label for="kota">Kota</label>
+                <input type="text" class="form-control" id="kota" [(ngModel)]="kajian.kota" name="kota" placeholder="Masukkan kota kajian">
+              </div>
+              <div class="form-group">
                 <label for="tanggal">Tanggal</label>
-                <input type="text" class="form-control" id="tanggal" [(ngModel)]="kajian.tanggal" name="tanggal" placeholder="Contoh: 10 November 2018">
+                <input type="date" class="form-control" id="tanggal" [(ngModel)]="kajian.tanggal" name="tanggal" placeholder="Contoh: 10 November 2018">
               </div>
               <div class="form-group">
                 <label for="kategori">Kategori</label>

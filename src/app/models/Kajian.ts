@@ -5,7 +5,8 @@ export interface Kajian {
     judul?: string;
     pemateri?: string;
     lokasi?: string;
-    tanggal?: string;
+    tanggal?: Date;
     poster?: any;
     kategori?: string;
+    kota?: string;
 }

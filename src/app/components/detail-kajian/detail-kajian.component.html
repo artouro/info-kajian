@@ -30,7 +30,7 @@
 			<div  class="kajian-desc">
 				<p>
 					<span>{{ kajian.lokasi }}</span> <br>
-					{{ kajian.tanggal }}
+					{{ kajian.tanggal | date : "d MMMM yyyy" }}
 				</p>
 				<div class="kajian-kategori"><a href="#">{{ kajian.kategori }}</a></div>
 			</div>

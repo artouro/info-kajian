@@ -16,8 +16,9 @@ export class EditComponent implements OnInit {
     judul: '',
     pemateri: '',
     lokasi: '',
-    tanggal: '',
-    kategori: ''
+    tanggal: new Date,
+    kategori: '',
+    kota: ''
   };
   id;
   selectedFile: File = null;
