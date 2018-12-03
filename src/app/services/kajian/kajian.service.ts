@@ -45,7 +45,7 @@ export class KajianService {
     this.mapping(this.kajianCollection.snapshotChanges());
     return this.kajian;
   }
-  filter(kota: string, tgl: string, operator: string){
+  filter(kota: string, tgl: string, operator){
     if(kota!=''&&tgl!='') this.kajianCollection = this.afs.collection('kajian', ref => ref.where('kota', '==', kota).where('tanggal', operator, tgl));
     else if(kota!='') this.kajianCollection = this.afs.collection('kajian', ref => ref.where('kota', '==', kota).orderBy('tanggal', 'asc'));
     else if(tgl!='') this.kajianCollection = this.afs.collection('kajian', ref => ref.where('tanggal', operator, tgl));
