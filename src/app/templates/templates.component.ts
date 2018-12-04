@@ -7,13 +7,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./templates.component.css']
 })
 export class TemplatesComponent implements OnInit {
-  loggedIn = false;
-  constructor( private auth: AuthService ){
-    this.auth.user.subscribe(data => {
-      if(data != null){
-        this.loggedIn = true;
-      }
-    })
+  constructor(){
   }
   ngOnInit() {
   }

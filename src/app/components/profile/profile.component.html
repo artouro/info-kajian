@@ -7,7 +7,7 @@
             <div class="col-12 col-md-4 content-wrapper">
                 <div class="content__body min-padding">
                     <div class="profile__editBtn text-right" *ngIf="authUsername">
-                        <a class="btn btn-warning" routerLink="/p/{{ user.username }}/edit">Ubah Profil</a>
+                        <a class="btn btn-warning" routerLink="/i/p/{{ user.username }}/edit">Ubah Profil</a>
                     </div>
                     <div class="profile__photo text-center">
                         <img [src]="user.photoUrl" *ngIf="user.photoUrl?.length > 0; else defaultPhoto">
@@ -37,7 +37,7 @@
                             <div class="col">
                                 <ul>
                                     <li *ngFor="let data of kajian">
-                                        <a routerLink="/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
+                                        <a routerLink="/i/d/{{ data.id }}" *ngIf="data.poster?.length > 0; else noImg">
                                             <img [src]="data.poster">
                                         </a>
                                     </li>
@@ -62,7 +62,7 @@
                 <div class="content__body kajian-following" *ngIf="kajianFollowing?.length > 0">
                     <h5 class="text-center"><small>Daftar Kajian</small> <br>{{ dataFollowingActive }}</h5>
                     <div *ngIf="kajianFollowing?.length > 0; else noDataKajianFollowing">
-                        <a *ngFor="let data of kajianFollowing" routerLink="/d/{{ data.id }}">
+                        <a *ngFor="let data of kajianFollowing" routerLink="/i/d/{{ data.id }}">
                             <div class="kajian-following-list">
                                 <h4>{{ data.judul }}</h4>
                                 <p>{{ data.pemateri }}<br>

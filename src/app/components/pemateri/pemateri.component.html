@@ -7,7 +7,7 @@
       </div>
       <div *ngIf="user?.length > 0; else noData">
 	      <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 content__body masjid" *ngFor="let data of user">
-					<a routerLink="/p/{{ data.username }}">
+					<a routerLink="/i/p/{{ data.username }}">
 	          <div class="masjid-title">
 	            <h2>{{ data.nama }}</h2>
 	            <p>@{{ data.username }}<br></p>

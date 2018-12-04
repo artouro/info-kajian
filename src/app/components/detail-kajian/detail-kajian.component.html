@@ -3,7 +3,7 @@
 		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content__body kajian detail-kajian">
 			<div class="row"> 
 				<div class="col-8 author">
-							<a routerLink="/p/{{ kajian.author }}">
+							<a routerLink="/i/p/{{ kajian.author }}">
 								<img src="../../../assets//component/images/user.png" alt="">
 								<span>{{ kajian.author }}</span>
 							</a>
@@ -13,7 +13,7 @@
 						<i class="fa fa-ellipsis-v"></i>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownOption">
-						<a class="dropdown-item" routerLink="/e/{{id}}">Edit</a>
+						<a class="dropdown-item" routerLink="/i/e/{{id}}">Edit</a>
 						<button class="dropdown-item" (click)="delete(id)">Delete</button>
 					</div>
 				</div>

@@ -33,7 +33,7 @@ import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: TemplatesComponent, children:[
+  { path: 'i', component: TemplatesComponent, children:[
       { path: '', component: KajianComponent, canActivate: [AuthGuard] },
       { path: 'tambah', component: TambahComponent, canActivate: [AuthGuard] },
       { path: 'masjid', component: MasjidComponent, canActivate: [AuthGuard] },
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
       { path: 'p/:username', component: ProfileComponent, canActivate: [AuthGuard] },
     ]
   },
-  { path: 'home', component: FrontpageComponent },
+  { path: '', component: FrontpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: '**', component: NotFoundComponent }

@@ -63,7 +63,7 @@ export class EditProfileComponent implements OnInit {
         .set({ photoUrl: filename }, { merge: true });
       }
     }).then(() => {
-      return this.router.navigate([`/p/${this.username  }`]);
+      return this.router.navigate([`/i/p/${this.username  }`]);
     })
   }
 }

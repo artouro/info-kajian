@@ -5,10 +5,12 @@
           <img src="assets/templates/img/img-01.png" alt="IMG">
         </div>
         <form [formGroup]="userForm" class="login100-form validate-form" (ngSubmit)="register()">
-          <span class="login100-form-title">
-              SIJAKI <br>
-              <small style="font-family: sans-serif; font-size: 1rem; color: #999;">Sistem Informasi Jadwal Kajian Islam</small>
-          </span>
+          <a routerLink="">
+            <div class="login100-form-title">
+              <h2>SIJAKI</h2>
+              <p>Sistem Informasi Jadwal Kajian Islam</p>
+            </div>
+          </a>
           <app-notification></app-notification>
           <div class="wrap-input100 validate-input">
             <input class="input100" type="text" name="nama" placeholder="Nama Lengkap" formControlName="nama">

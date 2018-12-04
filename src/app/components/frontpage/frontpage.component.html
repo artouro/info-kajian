@@ -13,7 +13,10 @@
         <b> SIJAKI</b>
       </a>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link btnPrimary" routerLink="/login">Login</a></li>
+          <li class="nav-item"><a class="nav-link btnPrimary" routerLink="/login" *ngIf="loggedIn != true; else loginBtn">Login</a></li>
+          <ng-template #loginBtn>
+              <li class="nav-item"><a class="nav-link btnPrimary" routerLink="/i">Go to Dashboard</a></li>
+          </ng-template>
         </ul>
     </div>
     </nav>

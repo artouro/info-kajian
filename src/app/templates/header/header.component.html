@@ -7,29 +7,29 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}">
-              <a class="nav-link" routerLink="/">Kajian <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="/i">Kajian <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}">
-              <a class="nav-link" routerLink="/masjid">Masjid</a>
+              <a class="nav-link" routerLink="/i/masjid">Masjid</a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}">
-              <a class="nav-link" routerLink="/majelis">Majelis</a>
+              <a class="nav-link" routerLink="/i/majelis">Majelis</a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}">
-              <a class="nav-link" routerLink="/pemateri">Pemateri</a>
+              <a class="nav-link" routerLink="/i/pemateri">Pemateri</a>
             </li>
           </ul>
           <hr>
           <ul class="navbar-nav right-nav ml-auto" *ngIf="auth.user | async as user">
             <li class="nav-item" *ngIf="user.level!=4">
-              <a class="nav-link btn btn-primary addBtn" routerLink="/tambah">Post Kajian</a>
+              <a class="nav-link btn btn-primary addBtn" routerLink="/i/tambah">Post Kajian</a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
           true}">
-              <a class="nav-link" href="/p/{{ username }}">Profile</a>
+              <a class="nav-link" routerLink="/i/p/{{ username }}">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link btn-out" routerLink="" (click)="logout()">Sign Out</a>

@@ -5,10 +5,12 @@
           <img src="assets/templates/img/img-01.png" alt="IMG">
         </div>
           <form [formGroup]="userForm" class="login100-form validate-form" (ngSubmit)="login()">
-            <div class="login100-form-title">
-              <h2>SIJAKI</h2>
-              <p>Sistem Informasi Jadwal Kajian Islam</p>
-            </div>
+            <a routerLink="">
+              <div class="login100-form-title">
+                <h2>SIJAKI</h2>
+                <p>Sistem Informasi Jadwal Kajian Islam</p>
+              </div>
+            </a>
             <app-notification></app-notification>
 
             <div class="wrap-input100 validate-input email-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -39,14 +41,14 @@
               </button>
             </div>
 
-            <div class="text-center p-t-12">
+            <!-- <div class="text-center p-t-12">
               <span class="txt1">
                 Forgot
               </span>
               <a class="txt2" href="#">
                 Username / Password?
               </a>
-            </div>
+            </div> -->
 
             <div class="text-center p-t-136">
               <a class="txt2" routerLink="/register">

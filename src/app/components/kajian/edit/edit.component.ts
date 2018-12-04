@@ -56,7 +56,7 @@ export class EditComponent implements OnInit {
         .set({ poster: filename }, { merge: true });
       }
     }).then(() => {
-      this.router.navigate([`/d/${this.id}`]);
+      this.router.navigate([`/i/d/${this.id}`]);
     })
   }
 }

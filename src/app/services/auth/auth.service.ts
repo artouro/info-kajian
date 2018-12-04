@@ -47,7 +47,7 @@ export class AuthService {
             .signInWithEmailAndPassword(email, password)
             .then(credentials => {
                 this.notify.update('Welcome back!', 'success');
-                this.router.navigate(['/']);
+                this.router.navigate(['/i']);
                 // return this.updateUserData(credentials.user)
             })
             .catch(err => this.handleError(err));
@@ -58,7 +58,7 @@ export class AuthService {
             .createUserWithEmailAndPassword(form.value['email'], form.value['password'])
             .then(credential => {
                 this.notify.update('Welcome new user!', 'success');
-                this.router.navigate(['/set-new-profile']);
+                this.router.navigate(['/i/set-new-profile']);
                 // return this.updateUserData(credential.user); // if using firestore
                 const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${credential.user.uid}`);
 

@@ -88,7 +88,7 @@ export class SetNewProfileComponent implements OnInit {
             user.kota = this.user.kota;
             user.telp = this.user.telp;
             this.users.updateUserProfile(user);
-            this.router.navigate(['/p/' + user.username]);
+            this.router.navigate(['/i/p/' + user.username]);
         });
     }
 }
